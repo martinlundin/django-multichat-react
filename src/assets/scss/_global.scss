@@ -1,0 +1,48 @@
+body {
+  input {
+    display: block;
+    width: 100%;
+    padding: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    border: none;
+    background: rgba($blueShiftLight, 0.5);
+    color: $white;
+    transition:all 0.3s ease-in-out;
+    &:focus {
+      outline: none;
+      background: $blueShiftLight;
+    }
+    &::placeholder {
+      color: rgba($white, 0.3);
+    }
+    &.invalid{
+      border:1px solid rgba($red,0.7);
+    }
+  }
+  label{
+    margin-bottom: 0;
+    font-size: 80%;
+  }
+
+  button {
+    display: block;
+    width: 100%;
+    padding: 7px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 6px;
+    border-radius: 3px;
+    border: none;
+    background: rgba($blueShiftLight, 0.5);
+    color: $white;
+    cursor: pointer;
+    font-size: 0.85em;
+    font-family: "proxima-nova", "Source Sans Pro", sans-serif;
+    &:focus{
+      outline:none;
+    }
+  }
+}
