@@ -2,37 +2,9 @@ import axios from "axios";
 import * as actionTypes from "./actionTypes";
 import {toast} from 'react-toastify';
 
-function inputErrorFieldIndicator(error) {
-    if (error.response.data.non_field_errors) {
-        error.response.data.non_field_errors.forEach(function (error) {
-            toast.error(error);
-        })
-    } else {
-        //Add error class to field
-        Object.keys(error.response.data).forEach(function (field) {
-            //Find first element with fieldname
-            let elements = document.querySelectorAll("input[name="+field+"]");
-            elements.forEach(function (element) {
-                element.classList.add("invalid");
-            });
-            let errors = error.response.data[field];
-            errors.forEach(function (error) {
-                toast.error(field + ": " + error);
-            });
-        })
-    }
-}
-
-function inputErrorFieldIndicatorReset() {
-    let elements = document.querySelectorAll(".invalid");
-    elements.forEach(function (element) {
-        element.classList.remove("invalid");
-    });
-}
 
 
 export const authStart = () => {
-    inputErrorFieldIndicatorReset();
     return {
         type: actionTypes.AUTH_START
     };
@@ -48,7 +20,11 @@ export const authSuccess = (email, token) => {
 
 export const authFail = error => {
     //Check error response data, django send back field name eg. "password", if not "non_field_errors"
-    inputErrorFieldIndicator(error);
+    let errorMessages = error.response.data;
+    Object.keys(errorMessages).forEach(function (field) {
+        let msg = (field === "non_field_errors" ? errorMessages[field][0] : field + ": " + errorMessages[field][0]);
+        toast.error(msg.capitalize());
+    });
     return {
         type: actionTypes.AUTH_FAIL,
         error: error

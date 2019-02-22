@@ -1,6 +1,7 @@
 import React from "react";
 import * as actions from "../store/actions/auth";
 import {connect} from "react-redux";
+import {checkInputError} from './../util'
 
 class Register extends React.Component {
 
@@ -19,10 +20,18 @@ class Register extends React.Component {
             <form method="POST" onSubmit={this.submitRegistration}>
                 <h3>Register</h3>
                 <label htmlFor="emailRegister">Email</label>
-                <input name="email" type="email" id="emailRegister" placeholder="name@mail.com" required/>
+                <input
+                    name="email"
+                    className={checkInputError(this.props, "email")}
+                    type="email"
+                    id="emailRegister"
+                    placeholder="name@mail.com"
+                    required
+                />
                 <label htmlFor="passwordRegister">Password</label>
                 <input
                     name="password1"
+                    className={checkInputError(this.props, "password1")}
                     type="password"
                     id="passwordRegister"
                     placeholder="Password"
@@ -30,13 +39,14 @@ class Register extends React.Component {
                 />
                 <input
                     name="password2"
+                    className={checkInputError(this.props, "password2")}
                     type="password"
                     placeholder="Confirm password"
                     required
                 />
                 <button type="submit">Register</button>
-                <button className="changeForm small" onClick={this.props.changeForm}>Already have an account? Login
-                    here</button>
+                <a className="changeForm small" href="/" onClick={this.props.changeForm}>Already have an account? Login
+                    here</a>
             </form>
         )
     }
@@ -45,7 +55,7 @@ class Register extends React.Component {
 
 const mapStateToProps = state => {
     return {
-
+        error: state.auth.error,
     };
 };
 const mapDispatchToProps = dispatch => {

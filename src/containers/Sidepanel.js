@@ -5,7 +5,7 @@ import * as messageActions from "../store/actions/message";
 import Contact from "../components/Contact";
 import LoginRegister from "./../containers/LoginRegister";
 import Loggedin from "../components/Loggedin";
-import CreateProfile from "../components/CreateProfile";
+import CreateProfile from "../components/EditProfile";
 
 const antIcon = <Icon type="loading" style={{fontSize: 24}} spin/>;
 

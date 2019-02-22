@@ -814,7 +814,7 @@ body input {
     background: #435f7a; }
   body input::placeholder {
     color: rgba(245, 245, 245, 0.3); }
-  body input.invalid {
+  body input.error {
     border: 1px solid rgba(225, 71, 67, 0.7); }
 body label {
   margin-bottom: 0;

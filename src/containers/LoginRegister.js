@@ -11,7 +11,8 @@ class LoginRegister extends React.Component {
         isFlipped: false
     };
 
-    changeForm = () => {
+    changeForm = (e) => {
+        e.preventDefault();
         this.setState({isFlipped: !this.state.isFlipped});
     };
 

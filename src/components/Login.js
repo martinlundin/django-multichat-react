@@ -1,6 +1,7 @@
 import React from "react";
 import * as actions from "../store/actions/auth";
 import {connect} from "react-redux";
+import {checkInputError} from './../util'
 
 class Login extends React.Component {
 
@@ -17,18 +18,20 @@ class Login extends React.Component {
                 <input
                     name="email"
                     type="email"
+                    className={checkInputError(this.props, "email")}
                     id="emailLogin"
                     placeholder="name@mail.com"
                 />
                 <label htmlFor="passwordLogin">Password</label>
                 <input
                     name="password"
+                    className={checkInputError(this.props, "password")}
                     type="password"
                     id="passwordLogin"
                     placeholder="Password"
                 />
                 <button type="submit">Login</button>
-                <button className="changeForm small" onClick={this.props.changeForm}>Don't have an account? Register here</button>
+                <a className="changeForm small" href="/"  onClick={this.props.changeForm}>Don't have an account? Register here</a>
             </form>
         )
     }
@@ -37,7 +40,7 @@ class Login extends React.Component {
 
 const mapStateToProps = state => {
     return {
-
+        error: state.auth.error,
     }
 };
 const mapDispatchToProps = dispatch => {

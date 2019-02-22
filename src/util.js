@@ -1,3 +1,5 @@
-/*String.prototype.capitalize = function() {
-    return this.charAt(0).toUpperCase() + this.slice(1);
-}*/
+export const checkInputError = (props, fieldname) => {
+    if(props.hasNestedProperties("error", "response", "data", fieldname)) {
+        return "error"
+    }
+};

@@ -2,7 +2,7 @@ import React from "react";
 import * as actions from "../store/actions/auth";
 import {connect} from "react-redux";
 
-class CreateProfile extends React.Component {
+class EditProfile extends React.Component {
 
     submitCreateProfile = e => {
         e.preventDefault();
@@ -40,4 +40,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(CreateProfile);
+)(EditProfile);

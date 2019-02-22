@@ -18,7 +18,7 @@ body {
     &::placeholder {
       color: rgba($white, 0.3);
     }
-    &.invalid{
+    &.error{
       border:1px solid rgba($red,0.7);
     }
   }
