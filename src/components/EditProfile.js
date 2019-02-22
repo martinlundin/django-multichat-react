@@ -4,7 +4,7 @@ import {connect} from "react-redux";
 
 class EditProfile extends React.Component {
 
-    submitCreateProfile = e => {
+    submitEditProfile = e => {
         e.preventDefault();
         this.props.createProfile(
             e.target.name.value,
@@ -15,12 +15,14 @@ class EditProfile extends React.Component {
     render() {
         return (
 
-            <form method="POST" onSubmit={this.submitCreateProfile}>
+            <form method="POST" onSubmit={this.submitEditProfile}>
                 <h3>Profile</h3>
-                <label htmlFor="nameRegister">Firstname or nickname</label>
-                <input name="name" type="type" id="nameRegister" placeholder="Melvin" required/>
-                <label htmlFor="imageRegister">Profile image</label>
-                <input name="image" type="file" id="imageRegister" accept="image/*"/>
+                <label htmlFor="emailEditProfile">Email</label>
+                <input name="email" type="disabled" id="emailEditProfile" value="mail@here.com" required/>
+                <label htmlFor="nameEditProfile">Firstname</label>
+                <input name="name" type="type" id="nameEditProfile" placeholder="Melvin" required/>
+                <label htmlFor="imageEditProfile">Profile image</label>
+                <input name="image" type="file" id="imageEditProfile" accept="image/*"/>
                 <button type="submit">Finish</button>
             </form>
 
@@ -33,7 +35,7 @@ const mapStateToProps = state => {
 };
 const mapDispatchToProps = dispatch => {
     return {
-        //createProfile: (name, image) => dispatch(actions.createProfile(name, image)),
+        //editProfile: (name, image) => dispatch(actions.editProfile(name, image)),
     };
 };
 

@@ -12,21 +12,17 @@ export const editProfile = (email, password) => {
     return dispatch => {
         dispatch(editProfileActionType());
         axios
-            .post("http://127.0.0.1:8000/rest-auth/login/", {
+            .post("http://127.0.0.1:8000/api/v1/users/", {
                 email: email,
                 password: password
             })
             .then(res => {
                 const token = res.data.key;
-                const expirationDate = new Date(new Date().getTime() + 3600 * 1000 * 24 * 365);
-                localStorage.setItem("token", token);
-                localStorage.setItem("email", email);
-                localStorage.setItem("expirationDate", expirationDate);
-                dispatch(authSuccess(email, token));
-                dispatch(checkAuthTimeout(3600 * 24 * 365));
+
+                dispatch(editProfileSuccess(email, token));
             })
             .catch(error => {
-                dispatch(authFail(error));
+                dispatch(editProfileFail(error));
             });
     };
 };

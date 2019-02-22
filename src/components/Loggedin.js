@@ -23,12 +23,10 @@ class Loggedin extends React.Component {
 
 
 const mapStateToProps = state => {
-    console.log(state)
     return {
         loading: state.auth.loading,
         token: state.auth.token,
         email: state.auth.email,
-        chats: state.message.chats
     };
 };
 const mapDispatchToProps = dispatch => {

@@ -5,7 +5,7 @@ import {checkInputError} from './../util'
 
 class Register extends React.Component {
 
-    submitRegistration = e => {
+    submitRegister = e => {
         e.preventDefault();
         this.props.register(
             e.target.email.value,
@@ -17,7 +17,7 @@ class Register extends React.Component {
     // Todo add spam protection on user creation
     render() {
         return (
-            <form method="POST" onSubmit={this.submitRegistration}>
+            <form method="POST" onSubmit={this.submitRegister}>
                 <h3>Register</h3>
                 <label htmlFor="emailRegister">Email</label>
                 <input
@@ -61,7 +61,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         register: (email, password1, password2) =>
-            dispatch(actions.authSignup(email, password1, password2)),
+            dispatch(actions.register(email, password1, password2)),
     };
 };
 
