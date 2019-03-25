@@ -6,12 +6,6 @@ class Loggedin extends React.Component {
     render() {
         return (
             <div>
-                <img
-                    id="profile-img"
-                    src="http://emilcarlsson.se/assets/mikeross.png"
-                    className="online"
-                    alt=""
-                />
                 <p>{this.props.email}</p>
                 <button onClick={() => this.props.logout()} className="authBtn">
                     <span>Logout</span>

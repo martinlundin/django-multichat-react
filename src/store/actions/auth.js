@@ -1,7 +1,7 @@
 import axios from "axios";
 import * as actionTypes from "./actionTypes";
 import {toast} from 'react-toastify';
-
+import {getUser} from './user'
 
 
 export const authStart = () => {
@@ -56,7 +56,7 @@ export const login = (email, password) => {
     return dispatch => {
         dispatch(authStart());
         axios
-            .post("http://127.0.0.1:8000/api/v1/rest-auth/login/", {
+            .post("http://localhost:8000/api/v1/rest-auth/login/", {
                 email: email,
                 password: password
             })
@@ -68,6 +68,7 @@ export const login = (email, password) => {
                 localStorage.setItem("userid", userid);
                 localStorage.setItem("expirationDate", expirationDate);
                 dispatch(authSuccess(token, userid));
+                dispatch(getUser(token, userid));
             })
             .catch(error => {
                 dispatch(authFail(error));
@@ -79,7 +80,7 @@ export const register = (email, password1, password2) => {
     return dispatch => {
         dispatch(authStart());
         axios
-            .post("http://127.0.0.1:8000/api/v1/rest-auth/registration/", {
+            .post("http://localhost:8000/api/v1/rest-auth/registration/", {
                 email: email,
                 password1: password1,
                 password2: password2
@@ -92,6 +93,7 @@ export const register = (email, password1, password2) => {
                 localStorage.setItem("userid", userid);
                 localStorage.setItem("expirationDate", expirationDate);
                 dispatch(authSuccess(token, userid));
+                dispatch(getUser(token, userid));
             })
             .catch(error => {
                 dispatch(authFail(error));
@@ -106,7 +108,7 @@ export const changePassword = (token, new_password1, new_password2) => {
             Authorization: `Token ${token}`
         };
         axios
-            .post("http://127.0.0.1:8000/api/v1/rest-auth/password/change/", {
+            .post("http://localhost:8000/api/v1/rest-auth/password/change/", {
                 new_password1: new_password1,
                 new_password2: new_password2
             })
@@ -131,6 +133,7 @@ export const tryCookieLogin = () => {
                 dispatch(logout());
             } else {
                 dispatch(authSuccess(token, userid));
+                dispatch(getUser(token, userid));
             }
         }
     };

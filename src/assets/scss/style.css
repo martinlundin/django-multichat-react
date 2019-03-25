@@ -307,15 +307,11 @@ template {
  * Colors
  */
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh;
-  background: #27ae60;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif;
   font-size: 1em;
   letter-spacing: 0.1px;
-  color: #32465a;
+  color: #1f2d3e;
   text-rendering: optimizeLegibility;
   text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.004);
   -webkit-font-smoothing: antialiased; }
@@ -797,16 +793,18 @@ body {
 small {
   font-size: 60% !important; }
 
+body * {
+  box-sizing: border-box; }
 body input {
   display: block;
   width: 100%;
-  padding: 7px;
+  padding: 12px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 6px;
-  border-radius: 3px;
+  border-radius: 0px;
   border: none;
-  background: rgba(67, 95, 122, 0.5);
+  background: rgba(67, 95, 122, 0.8);
   color: #f5f5f5;
   transition: all 0.3s ease-in-out; }
   body input:focus {
@@ -822,19 +820,50 @@ body label {
 body button {
   display: block;
   width: 100%;
-  padding: 7px;
+  padding: 12px;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 6px;
-  border-radius: 3px;
+  border-radius: 0px;
   border: none;
-  background: rgba(67, 95, 122, 0.5);
+  background: rgba(67, 95, 122, 0.8);
   color: #f5f5f5;
   cursor: pointer;
   font-size: 0.85em;
   font-family: "proxima-nova", "Source Sans Pro", sans-serif; }
   body button:focus {
     outline: none; }
+
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw; }
+
+.rowMargin {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+
+.bigText {
+  font-size: 25px; }
+
+input.underlineInput {
+  display: inline-block;
+  background: transparent;
+  color: #1f2d3e;
+  border-bottom: 2px solid;
+  padding: 5px;
+  width: 210px; }
+  input.underlineInput:focus {
+    background: transparent; }
+  input.underlineInput::placeholder {
+    color: #afafaf; }
+
+label {
+  cursor: pointer; }
+
+.profilePicture {
+  max-width: 120px;
+  border-radius: 999px;
+  display: inline-block; }
 
 .Toastify__close-button {
   width: auto; }
@@ -849,6 +878,36 @@ body button {
   left: 50%;
   transform: translate(-50%); }
 
+.videoOverlay {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  padding: 30px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  align-items: flex-end;
+  display: flex;
+  color: #f5f5f5;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px -300px 247px -133px inset; }
+  .videoOverlay .introWrapper {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    min-height: 70vh;
+    display: flex;
+    flex-wrap: wrap; }
+  .videoOverlay .introDesc {
+    width: 100%; }
+  .videoOverlay .react-card-flip {
+    width: 100%; }
+  .videoOverlay a {
+    color: #f5f5f5;
+    display: block;
+    text-align: center;
+    margin-top: 30px; }
+
 #loginRegisterWrapper {
   display: block;
   line-height: initial !important;
@@ -858,5 +917,21 @@ body button {
     text-align: center; }
   #loginRegisterWrapper form {
     padding: 15px; }
+
+.newUser {
+  width: 100%;
+  height: 100vh;
+  display: -webkit-flex;
+  display: flex; }
+  .newUser .newUserInner {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 30px 15px;
+    text-align: center; }
+
+#imageSelectEditUser {
+  position: absolute;
+  visibility: hidden; }
 
 /*# sourceMappingURL=style.css.map */

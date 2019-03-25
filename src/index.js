@@ -7,14 +7,18 @@ import {createStore, compose, applyMiddleware, combineReducers} from "redux";
 import {Provider} from "react-redux";
 import thunk from "redux-thunk";
 import authReducer from "./store/reducers/auth";
+import userReducer from "./store/reducers/user";
+import chatReducer from "./store/reducers/chat";
+import usersReducer from "./store/reducers/users";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 function configureStore() {
     const rootReducer = combineReducers({
         auth: authReducer,
-        //profile: profileReducer,
-        //message: messageReducer
+        user: userReducer,
+        chat: chatReducer,
+        users: usersReducer,
     });
 
     return createStore(

@@ -20,8 +20,8 @@ class LoginRegister extends React.Component {
         return (
             <ReactCardFlip isFlipped={this.state.isFlipped}>
 
-                <Login changeForm={this.changeForm} key="front"/>
-                <Register changeForm={this.changeForm} key="back"/>
+                <Login changeForm={this.changeForm} key="back"/>
+                <Register changeForm={this.changeForm} key="front"/>
 
             </ReactCardFlip>
         )

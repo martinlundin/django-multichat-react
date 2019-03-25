@@ -2,6 +2,7 @@
 @import "vars";
 @import "initial";
 @import "global";
+@import "general";
 
 //Plugins and node_modules
 @import "_toast.scss";
@@ -9,3 +10,4 @@
 
 //Components
 @import "login";
+@import "user";

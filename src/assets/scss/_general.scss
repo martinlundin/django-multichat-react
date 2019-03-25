@@ -1,0 +1,34 @@
+html,body{
+  overflow-x:hidden;
+  max-width:100vw;
+}
+.rowMargin{
+  margin-top:15px;
+  margin-bottom:15px;
+}
+.bigText{
+  font-size:25px;
+}
+
+input.underlineInput{
+  display: inline-block;
+  background: transparent;
+  color: $blueDark;
+  border-bottom: 2px solid;
+  padding: 5px;
+  width:210px;
+  &:focus{
+    background:transparent;
+  }
+  &::placeholder{
+    color: #afafaf;
+  }
+}
+label{
+  cursor:pointer;
+}
+.profilePicture{
+  max-width:120px;
+  border-radius:999px;
+  display:inline-block;
+}

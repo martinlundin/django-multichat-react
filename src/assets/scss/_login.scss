@@ -1,16 +1,51 @@
+.videoOverlay {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  padding: 30px 15px;
+  background: rgba(0, 0, 0, 0.3);
+  align-items: flex-end;
+  display: flex;
+  color: $white;
+  box-shadow: rgba(0, 0, 0, 0.75) 0px -300px 247px -133px inset;
+  .introWrapper{
+    width: 100%;
+    max-width:400px;
+    margin:0 auto;
+    min-height: 70vh;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .introDesc{
+    width:100%;
+  }
+  .react-card-flip {
+    width:100%;
+  }
+  a{
+    color:$white;
+    display:block;
+    text-align:center;
+    margin-top:30px;
+  }
+}
+
 #loginRegisterWrapper {
   display: block;
   line-height: initial !important;
-  position:relative;
+  position: relative;
 
-  h3{
-    color:$white;
+  h3 {
+    color: $white;
     text-align: center;
   }
   input {
 
   }
-  form{
-    padding:15px;
+  form {
+    padding: 15px;
   }
 }

@@ -3,7 +3,7 @@ import {Form, Button, Select} from "antd";
 import axios from "axios";
 import {connect} from "react-redux";
 import {withRouter} from "react-router-dom";
-import * as messageActions from "../store/actions/message";
+import * as messageActions from "../store/actions/chat";
 
 const FormItem = Form.Item;
 
@@ -39,7 +39,7 @@ class HorizontalAddChatForm extends React.Component {
                     Authorization: `Token ${this.props.token}`
                 };
                 axios
-                    .post("http://127.0.0.1:8000/chat/create/", {
+                    .post("http://localhost:8000/chat/create/", {
                         messages: [],
                         participants: combined
                     })

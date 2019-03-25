@@ -1,24 +1,32 @@
 import React from "react";
 import {connect} from "react-redux";
 import WebSocketInstance from "../websocket";
-import Hoc from "../hoc/hoc";
+import * as messageActions from "../store/actions/chat";
 
-class Chat extends React.Component {
-    state = {message: ""};
+class ChatRoom extends React.Component {
+    state = {
+        text: "",
+        giphy: null,
+    };
 
-    initialiseChat() {
-        this.waitForSocketConnection(() => {
-            WebSocketInstance.fetchMessages(
-                this.props.username,
-                this.props.match.params.chatID
-            );
-        });
-        WebSocketInstance.connect(this.props.match.params.chatID);
+    initializeChat() {
+        this.connectToSocket();
+        WebSocketInstance.onReturnMessages()
+        //this.props.createChat(this.props.token, ["3013ec8a-9bca-41a0-943c-2a659ae33505", "5d556ba7-c22b-4177-a122-f28ccb681c4c"], "Hmm")
+    }
+
+    connectToSocket(chatid){
+        if(chatid != null){
+            WebSocketInstance.connect(chatid, this.props.token);
+            this.waitForSocketConnection(() => {
+                WebSocketInstance.getMessages(0, 20);
+            });
+        }
     }
 
     constructor(props) {
         super(props);
-        this.initialiseChat();
+        this.initializeChat();
     }
 
     waitForSocketConnection(callback) {
@@ -36,17 +44,17 @@ class Chat extends React.Component {
     }
 
     messageChangeHandler = event => {
-        this.setState({message: event.target.value});
+        this.setState({text: event.target.value});
     };
 
     sendMessageHandler = e => {
         e.preventDefault();
         const messageObject = {
-            from: this.props.username,
-            content: this.state.message,
-            chatId: this.props.match.params.chatID
+            text: this.state.text,
         };
-        WebSocketInstance.newChatMessage(messageObject);
+        WebSocketInstance.sendMessage(messageObject);
+        this.props.addMessageToChat(this.props.chatid, this.props.userid, this.state.text);
+
         this.setState({message: ""});
     };
 
@@ -83,7 +91,7 @@ class Chat extends React.Component {
             >
                 <img src="http://emilcarlsson.se/assets/mikeross.png"/>
                 <p>
-                    {message.content}
+                    {message.text}
                     <br/>
                     <small>{this.renderTimestamp(message.timestamp)}</small>
                 </p>
@@ -104,25 +112,21 @@ class Chat extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        if (this.props.match.params.chatID !== newProps.match.params.chatID) {
-            WebSocketInstance.disconnect();
-            this.waitForSocketConnection(() => {
-                WebSocketInstance.fetchMessages(
-                    this.props.username,
-                    newProps.match.params.chatID
-                );
-            });
-            WebSocketInstance.connect(newProps.match.params.chatID);
+        if (this.props.chatid !== newProps.chatid) {
+            if(this.props.chatid != null){
+                WebSocketInstance.disconnect();
+            }
+            this.connectToSocket(newProps.chatid);
         }
     }
 
     render() {
-        const messages = this.state.messages;
+        const text = this.state.message;
         return (
-            <Hoc>
+            <div>
                 <div className="messages">
                     <ul id="chat-log">
-                        {this.props.messages && this.renderMessages(this.props.messages)}
+                        {this.props.chats && this.renderMessages(this.props.messages)}
                         <div
                             style={{float: "left", clear: "both"}}
                             ref={el => {
@@ -136,29 +140,42 @@ class Chat extends React.Component {
                         <div className="wrap">
                             <input
                                 onChange={this.messageChangeHandler}
-                                value={this.state.message}
+                                value={this.state.text}
                                 required
                                 id="chat-message-input"
                                 type="text"
                                 placeholder="Write your message..."
+                                autoComplete="off"
                             />
                             <i className="fa fa-paperclip attachment" aria-hidden="true"/>
                             <button id="chat-message-submit" className="submit">
-                                <i className="fa fa-paper-plane" aria-hidden="true"/>
+                                Send
                             </button>
                         </div>
                     </form>
                 </div>
-            </Hoc>
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        username: state.auth.username,
-        messages: state.message.messages
+        token: state.auth.token,
+        userid: state.auth.userid,
+        messages: state.chat.chats[state.chat.active],
+        chatid: state.chat.active
     };
 };
 
-export default connect(mapStateToProps)(Chat);
+
+const mapDispatchToProps = dispatch => {
+    return {
+        addMessageToChat: (chatid, sender, text, giphy, timestamp) => dispatch(messageActions.addMessageToChat(chatid, sender, text, giphy, timestamp)),
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ChatRoom);

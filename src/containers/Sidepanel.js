@@ -1,11 +1,11 @@
 import React from "react";
 import {Spin, Icon} from "antd";
 import {connect} from "react-redux";
-import * as messageActions from "../store/actions/message";
+import * as messageActions from "../store/actions/chat";
 import Contact from "../components/Contact";
 import LoginRegister from "./../containers/LoginRegister";
 import Loggedin from "../components/Loggedin";
-import CreateProfile from "../components/EditProfile";
+import CreateProfile from "../components/EditUser";
 
 const antIcon = <Icon type="loading" style={{fontSize: 24}} spin/>;
 
@@ -97,7 +97,7 @@ const mapStateToProps = state => {
         loading: state.auth.loading,
         token: state.auth.token,
         email: state.auth.email,
-        chats: state.message.chats
+        chats: state.chat.chats
     };
 };
 
