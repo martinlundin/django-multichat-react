@@ -33,7 +33,8 @@ class App extends Component {
                     this.props.hasName ? (
                         //Logged in users
                         <div>
-                            Comming soon
+                            <ChatList/>
+                            <UserList/>
                             <Loggedin/>
                         </div>
                     ) : (
