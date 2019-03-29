@@ -26,8 +26,8 @@ const getUserSuccess = (state, action) => {
 
 const editUserSuccess = (state, action) => {
     return updateObject(state, {
-        token: action.token,
-        userid: action.userid,
+        name: action.name,
+        image: action.image,
         error: null,
         loading: false
     });

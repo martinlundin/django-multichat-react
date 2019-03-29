@@ -34,11 +34,11 @@ class NewUser extends React.Component {
             <Container className={"newUser"}>
                 <div className={"newUserInner"}>
                     <form method="POST" encType="multipart/form-data" onSubmit={this.submitEditUser}>
-                        <Row className={"bigText rowMargin"}>Hello <input name={""} className={"underlineInput"} placeholder={"(Enter your name)"}/>!</Row>
+                        <Row className={"bigText rowMargin"}>Hello <input name={"name"} className={"underlineInput"} placeholder={"(Enter your name)"} defaultValue={this.props.name}/>!</Row>
                         <Row className={"rowMargin"}>
                             <div><label htmlFor={"imageSelectEditUser"}><img id="showSelectedImageEditUser" className={"profilePicture"} alt="Profile" src={this.props.image}/></label></div>
                             <div><label htmlFor={"imageSelectEditUser"}>Add profile picture</label></div>
-                            <input name="image" type="hidden" id="imageEditUser" defaultValue={this.props.image}/>
+                            <input name="image" type="hidden" id="imageEditUser"/>
                             <input name="imageSelect" type="file" id="imageSelectEditUser" accept="image/*" onChange={this.onImageSelect}/>
                         </Row>
                         <Row>

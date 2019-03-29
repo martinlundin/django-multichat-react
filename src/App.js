@@ -30,14 +30,15 @@ class App extends Component {
                                 hideProgressBar={true} pauseOnFocusLoss={false}/>
 
                 {this.props.isAuthenticated ? (
-                    this.props.missingName ? (
-                        //Logged in new users, (we want user to enter name)
-                        <NewUser />
-                    ) : (
+                    this.props.hasName ? (
                         //Logged in users
                         <div>
                             Comming soon
+                            <Loggedin/>
                         </div>
+                    ) : (
+                        //Logged in new users, (we want user to enter name)
+                        <NewUser />
                     )
                 ) : (
                     //Not logged in
@@ -53,7 +54,7 @@ class App extends Component {
 const mapStateToProps = state => {
     return {
         isAuthenticated: state.auth.token !== null,
-        missingName: state.user.name !== null,
+        hasName: state.user.name !== null && state.user.name !== "",
         token: state.auth.token,
         userid: state.auth.userid,
         chatid: state.chat.active,
