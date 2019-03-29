@@ -6,7 +6,7 @@ class Loggedin extends React.Component {
     render() {
         return (
             <div>
-                <p>{this.props.email}</p>
+                <p>{this.props.name}</p>
                 <button onClick={() => this.props.logout()} className="authBtn">
                     <span>Logout</span>
                 </button>
@@ -20,7 +20,7 @@ const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
         token: state.auth.token,
-        email: state.auth.email,
+        name: state.user.name,
     };
 };
 const mapDispatchToProps = dispatch => {
