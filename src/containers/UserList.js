@@ -25,7 +25,8 @@ class UserList extends React.Component {
     render() {
         return (
             <div>
-                { (this.props.hasOwnProperty("user"))?
+
+                { (this.props.hasOwnProperty("users"))?
                     this.props.users.userids.map((userid, i, arr) => (
                     <UserPreview key={userid} userid={userid} />
                 )) : ("")}

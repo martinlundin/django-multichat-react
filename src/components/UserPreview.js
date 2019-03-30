@@ -16,13 +16,7 @@ class UserPreview extends React.Component {
     }
 
     componentDidMount() {
-        //Remove yourself, we know you are a participant
-        this.state.chat.participants.remove(this.props.userid);
 
-        //Set chat name if not set
-        if(this.state.chat.name === null){
-            this.state.chat.name = this.state.chat.participants.join(", ")
-        }
     }
 
     componentDidUpdate() {
@@ -33,13 +27,24 @@ class UserPreview extends React.Component {
 
     }
 
+    openOrCreateChat(participants){
+        //Todo add check if chat exists then open it logic
+
+        this.props.createChat(this.props.token, participants)
+    }
+
     render() {
-        return (
-            <div id={this.props.userid} className="userPreview" onClick={()=>this.props.createChat(this.props.token, [this.props.userid, this.props.currentUserid])}>
-                <span className={"userName"}>{(this.state.userPreview.name)}</span>
-                <img src={(this.state.userPreview.image)}>{(this.state.userPreview.name)}</img>
-            </div>
-        );
+        //Show users that actually have a name
+        if(this.props.users.users[this.props.userid].name){
+            return (
+                <div id={this.props.userid} className="userPreview" onClick={()=>this.openOrCreateChat([this.props.userid, this.props.currentUserid])}>
+                    <img src={this.props.users.users[this.props.userid].image} className={"profilePicture"} />
+                    <span className={"profileName"}>{this.props.users.users[this.props.userid].name}</span>
+                </div>
+            );
+        }else{
+            return null
+        }
     }
 }
 

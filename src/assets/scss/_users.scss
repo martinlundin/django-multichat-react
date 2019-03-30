@@ -1,0 +1,14 @@
+.userPreview{
+  height:50px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+  img{
+    max-height:100%;
+  }
+  .profileName{
+    font-size:18px;
+    display:inline-block;
+    padding:5px;
+  }
+}

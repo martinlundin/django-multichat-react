@@ -12,16 +12,12 @@ export const getUsers = (token) => {
         axios
             .get(`http://localhost:8000/api/v1/users/`)
             .then(res => {
-
-                console.log(res)
                 res.data.forEach(function(user){
                     dispatch(addUser(user));
                 })
             });
     };
 };
-
-
 
 export const addUser = user => {
     let userid = user.uuid;
