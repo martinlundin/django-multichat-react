@@ -950,5 +950,38 @@ label {
   margin: 0;
   padding: 0;
   list-style: none; }
+  .chatMessagesWrap .chatMessages .chatMessage {
+    position: relative;
+    margin: 5px; }
+    .chatMessagesWrap .chatMessages .chatMessage .chatMessageTimestamp {
+      display: block;
+      text-align: center; }
+    .chatMessagesWrap .chatMessages .chatMessage .chatProfilePicture {
+      width: 25px;
+      vertical-align: bottom;
+      transition: 0.3s all; }
+    .chatMessagesWrap .chatMessages .chatMessage .chatMessageText {
+      display: inline-block;
+      max-width: 80%;
+      padding: 8px;
+      border-radius: 15px;
+      margin: 0 5px;
+      background: grey; }
+    .chatMessagesWrap .chatMessages .chatMessage.sent {
+      text-align: right; }
+      .chatMessagesWrap .chatMessages .chatMessage.sent .chatProfilePicture {
+        display: none; }
+      .chatMessagesWrap .chatMessages .chatMessage.sent .chatMessageText {
+        text-align: left;
+        background: #185292;
+        color: white;
+        border-radius: 15px 15px 0 15px; }
+    .chatMessagesWrap .chatMessages .chatMessage.reply .chatMessageText {
+      background: #e0e0e1;
+      border-radius: 15px 15px 15px 0; }
+    .chatMessagesWrap .chatMessages .chatMessage.reply .chatProfilePicture {
+      transform: translateX(-100px); }
+    .chatMessagesWrap .chatMessages .chatMessage.reply.last .chatProfilePicture {
+      transform: translateX(0); }
 
 /*# sourceMappingURL=style.css.map */

@@ -1,9 +1,64 @@
+$radius: 15px;
+$padding: 8px;
+$blue: #185292;
+$gray: rgb(224, 224, 225);
 .chatMessagesWrap{
 
   .chatMessages{
     margin:0;
     padding:0;
     list-style:none;
+
+    .chatMessage{
+      position:relative;
+      margin:5px;
+      .chatMessageTimestamp{
+        display:block;
+        text-align:center;
+      }
+      .chatProfilePicture{
+        width:25px;
+        vertical-align: bottom;
+        transition:0.3s all;
+      }
+      .chatMessageText{
+        display:inline-block;
+        max-width:80%;
+        padding:$padding;
+        border-radius:$radius;
+        margin:0 5px;
+        background:grey;
+      }
+      &.sent{
+        text-align: right;
+        .chatProfilePicture{
+          display:none;
+        }
+        .chatMessageText {
+          text-align:left;
+          background:$blue;
+          color:white;
+          border-radius:$radius $radius 0 $radius;
+        }
+
+      }
+      &.reply{
+        .chatMessageText {
+          background: $gray;
+          border-radius: $radius $radius $radius 0;
+
+        }
+        .chatProfilePicture{
+          transform:translateX(-100px)
+        }
+        &.last{
+          .chatProfilePicture{
+            transform:translateX(0)
+          }
+        }
+      }
+    }
+
   }
 
 }

@@ -31,9 +31,9 @@ class ChatMessage extends React.Component {
                     (this.props.message.sender === this.props.userid ? "sent " : "reply ")
                 }
             >
-                <p className={"chatMessageTimestamp"}>{this.props.message.timestamp}</p>
+                <span className={"chatMessageTimestamp"}>{this.props.message.timestamp}</span>
                 <img className={"profilePicture chatProfilePicture"} src="http://emilcarlsson.se/assets/mikeross.png"/>
-                <p className={"chatMessageText"}>{this.props.message.text}</p>
+                <span className={"chatMessageText"}>{this.props.message.text}</span>
             </li>
         );
     }

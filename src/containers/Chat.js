@@ -114,7 +114,7 @@ class ChatRoom extends React.Component {
                     <div className="chatMessagesWrap">
                         <ul className="chatMessages">
 
-                            {this.props.active.messages.map((message, i, arr) => (
+                            {this.props.active.messages.reverse().map((message, i, arr) => (
                                 <ChatMessage key={i} message={message} lastMessage={arr[i-1]}/>
                             ))}
 
