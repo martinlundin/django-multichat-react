@@ -24,11 +24,21 @@ class ChatMessage extends React.Component {
 
     render() {
         console.log(this.props);
+
+        let isFollowUp = false;
+        //Is less than 15 minutes from last message and sender is the same
+        if(this.props.hasOwnProperty("lastMessage") && this.props.lastMessage != null && this.props.message.timestamp < this.props.lastMessage.timestamp + 900 && this.props.message.sender === this.props.lastMessage.sender){
+            isFollowUp = true;
+        }else{
+            isFollowUp = false;
+        }
+
         return (
             <li
                 className={
                     "chatMessage " +
-                    (this.props.message.sender === this.props.userid ? "sent " : "reply ")
+                    (this.props.message.sender === this.props.userid ? "sent " : "reply ") +
+                    (isFollowUp ? "followUp " : null)
                 }
             >
                 <span className={"chatMessageTimestamp"}>{this.props.message.timestamp}</span>

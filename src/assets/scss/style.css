@@ -952,7 +952,8 @@ label {
   list-style: none; }
   .chatMessagesWrap .chatMessages .chatMessage {
     position: relative;
-    margin: 5px; }
+    margin: 5px;
+    transition: 0.3s all; }
     .chatMessagesWrap .chatMessages .chatMessage .chatMessageTimestamp {
       display: block;
       text-align: center; }
@@ -981,7 +982,15 @@ label {
       border-radius: 15px 15px 15px 0; }
     .chatMessagesWrap .chatMessages .chatMessage.reply .chatProfilePicture {
       transform: translateX(-100px); }
-    .chatMessagesWrap .chatMessages .chatMessage.reply.last .chatProfilePicture {
-      transform: translateX(0); }
+    .chatMessagesWrap .chatMessages .chatMessage.followUp {
+      margin-top: -5px; }
+      .chatMessagesWrap .chatMessages .chatMessage.followUp .chatMessageTimestamp {
+        display: none; }
+      .chatMessagesWrap .chatMessages .chatMessage.followUp.sent .chatMessageText {
+        border-radius: 15px 0 0 15px; }
+      .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatMessageText {
+        border-radius: 0 15px 15px 0; }
+      .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatProfilePicture {
+        transform: translateX(0); }
 
 /*# sourceMappingURL=style.css.map */

@@ -12,6 +12,7 @@ $gray: rgb(224, 224, 225);
     .chatMessage{
       position:relative;
       margin:5px;
+      transition:0.3s all;
       .chatMessageTimestamp{
         display:block;
         text-align:center;
@@ -49,13 +50,28 @@ $gray: rgb(224, 224, 225);
 
         }
         .chatProfilePicture{
-          transform:translateX(-100px)
+          transform:translateX(-100px);
         }
-        &.last{
-          .chatProfilePicture{
-            transform:translateX(0)
+      }
+      &.followUp{
+        margin-top:-5px;
+        .chatMessageTimestamp {
+          display:none;
+        }
+        &.sent {
+          .chatMessageText {
+            border-radius: $radius 0 0 $radius;
           }
         }
+        &.reply {
+          .chatMessageText {
+            border-radius: 0 $radius $radius 0;
+          }
+          .chatProfilePicture{
+            transform:translateX(0);
+          }
+        }
+
       }
     }
 
