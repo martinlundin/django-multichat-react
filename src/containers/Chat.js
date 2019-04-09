@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import WebSocketInstance from "../websocket";
 import * as messageActions from "../store/actions/chat";
+import ChatMessage from "../components/ChatMessage"
 
 class ChatRoom extends React.Component {
     state = {
@@ -15,8 +16,8 @@ class ChatRoom extends React.Component {
         //this.props.createChat(this.props.token, ["3013ec8a-9bca-41a0-943c-2a659ae33505", "5d556ba7-c22b-4177-a122-f28ccb681c4c"], "Hmm")
     }
 
-    connectToSocket(chatid){
-        if(chatid != null){
+    connectToSocket(chatid) {
+        if (chatid != null) {
             WebSocketInstance.connect(chatid, this.props.token);
             this.waitForSocketConnection(() => {
                 WebSocketInstance.getMessages(0, 20);
@@ -81,26 +82,10 @@ class ChatRoom extends React.Component {
         return prefix;
     };
 
-    renderMessages = messages => {
-        const currentUser = this.props.username;
-        return messages.map((message, i, arr) => (
-            <li
-                key={message.id}
-                style={{marginBottom: arr.length - 1 === i ? "300px" : "15px"}}
-                className={message.author === currentUser ? "sent" : "replies"}
-            >
-                <img src="http://emilcarlsson.se/assets/mikeross.png"/>
-                <p>
-                    {message.text}
-                    <br/>
-                    <small>{this.renderTimestamp(message.timestamp)}</small>
-                </p>
-            </li>
-        ));
-    };
-
     scrollToBottom = () => {
-        this.messagesEnd.scrollIntoView({behavior: "smooth"});
+        if (this.props.chatid) {
+            this.messagesEnd.scrollIntoView({behavior: "smooth"});
+        }
     };
 
     componentDidMount() {
@@ -113,7 +98,7 @@ class ChatRoom extends React.Component {
 
     componentWillReceiveProps(newProps) {
         if (this.props.chatid !== newProps.chatid) {
-            if(this.props.chatid != null){
+            if (this.props.chatid != null) {
                 WebSocketInstance.disconnect();
             }
             this.connectToSocket(newProps.chatid);
@@ -121,41 +106,46 @@ class ChatRoom extends React.Component {
     }
 
     render() {
-        const text = this.state.message;
-        return (
-            <div>
-                <div className="messages">
-                    <ul id="chat-log">
-                        {this.props.chats && this.renderMessages(this.props.messages)}
-                        <div
-                            style={{float: "left", clear: "both"}}
-                            ref={el => {
-                                this.messagesEnd = el;
-                            }}
-                        />
-                    </ul>
+        console.log(this.props.active);
+        //Show chat if id is selected
+        if (this.props.chatid && this.props.active) {
+            return (
+                <div>
+                    <div className="chatMessagesWrap">
+                        <ul className="chatMessages">
+
+                            {this.props.active.messages.map((message, i, arr) => (
+                                <ChatMessage key={i} message={message} lastMessage={arr[i-1]}/>
+                            ))}
+
+                            <div style={{float: "left", clear: "both"}} ref={el => {this.messagesEnd = el;}}/>
+                        </ul>
+                    </div>
+                    <div className="message-input">
+                        <p>{this.props.chatid}</p>
+                        <form onSubmit={this.sendMessageHandler}>
+                            <div className="wrap">
+                                <input
+                                    onChange={this.messageChangeHandler}
+                                    value={this.state.text}
+                                    required
+                                    id="chat-message-input"
+                                    type="text"
+                                    placeholder="Write your message..."
+                                    autoComplete="off"
+                                />
+                                <i className="fa fa-paperclip attachment" aria-hidden="true"/>
+                                <button id="chat-message-submit" className="submit">
+                                    Send
+                                </button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-                <div className="message-input">
-                    <form onSubmit={this.sendMessageHandler}>
-                        <div className="wrap">
-                            <input
-                                onChange={this.messageChangeHandler}
-                                value={this.state.text}
-                                required
-                                id="chat-message-input"
-                                type="text"
-                                placeholder="Write your message..."
-                                autoComplete="off"
-                            />
-                            <i className="fa fa-paperclip attachment" aria-hidden="true"/>
-                            <button id="chat-message-submit" className="submit">
-                                Send
-                            </button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        );
+            );
+        } else {
+            return null
+        }
     }
 }
 
@@ -163,7 +153,7 @@ const mapStateToProps = state => {
     return {
         token: state.auth.token,
         userid: state.auth.userid,
-        messages: state.chat.chats[state.chat.active],
+        active: state.chat.chats[state.chat.active],
         chatid: state.chat.active
     };
 };

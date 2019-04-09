@@ -35,6 +35,7 @@ class App extends Component {
                         <div>
                             <ChatList/>
                             <UserList/>
+                            <Chat/>
                             <Loggedin/>
                         </div>
                     ) : (
