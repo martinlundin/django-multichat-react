@@ -33,7 +33,7 @@ class ChatPreview extends React.Component {
             this.state.chat.participants.forEach(function(participant, i,){
                 names.push(outsideThis.getUserNameById(participant));
             });
-            this.state.chat.name = names;
+            this.state.chat.name =  names.join(", ");
         }
     }
 
