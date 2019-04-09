@@ -36,6 +36,7 @@ class UserList extends React.Component {
 }
 
 const mapStateToProps = state => {
+    console.log(state);
     return {
         token: state.auth.token,
         userid: state.auth.userid,

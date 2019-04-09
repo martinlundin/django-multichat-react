@@ -15,13 +15,25 @@ class ChatPreview extends React.Component {
 
     }
 
+    getUserNameById(id){
+        return this.props.users.users[id].name
+    }
+    getUserImageById(id){
+        return this.props.users.users[id].image
+    }
+
     componentDidMount() {
         //Remove yourself, we know you are a participant
         this.state.chat.participants.remove(this.props.userid);
 
         //Set chat name if not set
         if(this.state.chat.name === null){
-            this.state.chat.name = this.state.chat.participants.join(", ")
+            let names = [];
+            let outsideThis = this;
+            this.state.chat.participants.forEach(function(participant, i,){
+                names.push(outsideThis.getUserNameById(participant));
+            });
+            this.state.chat.name = names;
         }
     }
 
