@@ -6,9 +6,10 @@ import 'react-toastify/dist/ReactToastify.css';
 import LoginRegister from "./containers/LoginRegister";
 import Chat from "./containers/Chat";
 import Home from "./containers/Home";
+import Profile from "./containers/Profile";
 import ChatList from "./containers/ChatList";
 import UserList from "./containers/UserList";
-import Loggedin from "./components/Loggedin";
+import Loggedin from "./components/Logout";
 import Header from "./components/Header";
 import EditUser from "./components/EditUser";
 import IntroView from "./containers/IntroView";
@@ -16,7 +17,7 @@ import NewUser from "./containers/NewUser";
 import ChangePassword from "./components/ChangePassword";
 import {connect} from "react-redux";
 import * as actions from "./store/actions/auth";
-import { Route, Link } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 
 
 class App extends Component {
@@ -37,7 +38,7 @@ class App extends Component {
                         <div>
                             <Header/>
                             <Route exact path="/" component={Home} />
-                            
+                            <Route exact path="/profile" component={Profile} />
                         </div>
                     ) : (
                         //Logged in new users, (we want user to enter name)
@@ -69,7 +70,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(
+export default withRouter(connect(
     mapStateToProps,
     mapDispatchToProps
-)(App);
+)(App));

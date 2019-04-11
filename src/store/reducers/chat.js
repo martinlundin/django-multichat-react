@@ -11,13 +11,18 @@ const reducer = (state = initialState, action) => {
 
     switch (action.type) {
         case actionTypes.ADD_CHAT:
-            return {
-                chatids: [ ...state.chatids, action.id],
-                chats: {
-                    ...state.chats,
-                    [action.id]: action.payload
-                }
-            };
+            //Only add non existing chats
+            if (state.chatids.includes(action.id) === false) {
+                return {
+                    chatids: [...state.chatids, action.id],
+                    chats: {
+                        ...state.chats,
+                        [action.id]: action.payload
+                    }
+                };
+            } else {
+                return state
+            }
         case actionTypes.ADD_MESSAGE_TO_CHAT:
             state.chats[action.id]['messages'].unshift(action.payload);
             return {

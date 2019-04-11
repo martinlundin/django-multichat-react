@@ -1,6 +1,7 @@
 import React from "react";
 import * as actions from "../store/actions/auth";
 import {connect} from "react-redux";
+import { Link } from "react-router-dom";
 
 
 class Header extends React.Component {
@@ -33,11 +34,9 @@ class Header extends React.Component {
         return (
             <header className={`padding ${this.state.headerClass}`}>
                 <span className={"headerNavigation"}></span>
-                <span onClick={function () {
-                    console.log("Open settings")
-                }}>
+                <Link to={"/profile"}>
                     <img className={"userImage headerUserImage"} src={this.props.image}/>
-                </span>
+                </Link>
             </header>
         )
     }

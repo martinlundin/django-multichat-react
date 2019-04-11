@@ -1,9 +1,9 @@
 import React from "react";
 import {connect} from "react-redux";
-import ChatList from "./ChatList";
-import UserList from "./UserList";
+import EditUser from "./../components/EditUser";
+import Logout from "../components/Logout";
 
-class Home extends React.Component {
+class Profile extends React.Component {
 
     constructor(props) {
         super(props);
@@ -20,13 +20,10 @@ class Home extends React.Component {
 
     render() {
         return (
-            (this.props.chatids != null ?
-                    //There are chats, show chat list
-                    <ChatList/>
-                    :
-                    //There are no chats, show users
-                    <UserList/>
-            )
+            <div>
+                <EditUser/>
+                <Logout/>
+            </div>
         );
     }
 }
@@ -47,4 +44,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Home);
+)(Profile);

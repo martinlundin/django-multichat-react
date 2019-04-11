@@ -2,11 +2,10 @@ import React from "react";
 import * as actions from "../store/actions/auth";
 import {connect} from "react-redux";
 
-class Loggedin extends React.Component {
+class Logout extends React.Component {
     render() {
         return (
             <div className={"padding"}>
-                <p>{this.props.name}</p>
                 <button onClick={() => this.props.logout()} className="authBtn">
                     <span>Logout</span>
                 </button>
@@ -31,4 +30,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(Loggedin);
+)(Logout);
