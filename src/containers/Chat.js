@@ -44,10 +44,9 @@ class Chat extends React.Component {
     }
 
     render() {
-
         if (this.props.chatid && this.props.chat.messages) {
             return (
-                <div>
+                <div className={"chat"}>
                     <div className="chatMessagesWrap">
                         <ul className="chatMessages">
                             {this.props.chat.messages.slice(0).reverse().map((message, i, arr) =>

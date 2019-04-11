@@ -17,8 +17,8 @@ import {connect} from "react-redux";
 import * as actions from "./store/actions/auth";
 
 
-
 class App extends Component {
+
     componentDidMount() {
         this.props.tryCookieLogin();
     }
@@ -27,8 +27,7 @@ class App extends Component {
 
         return (
             <div className="App">
-                <ToastContainer closeButton={false} position={"top-center"} toastClassName={"bbToast"}
-                                hideProgressBar={true} pauseOnFocusLoss={false}/>
+                <ToastContainer closeButton={false} position={"top-center"} toastClassName={"bbToast"} hideProgressBar={true} pauseOnFocusLoss={false}/>
 
                 {this.props.isAuthenticated ? (
                     this.props.hasName ? (
