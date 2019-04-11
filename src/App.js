@@ -5,6 +5,7 @@ import {ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import LoginRegister from "./containers/LoginRegister";
 import Chat from "./containers/Chat";
+import Home from "./containers/Home";
 import ChatList from "./containers/ChatList";
 import UserList from "./containers/UserList";
 import Loggedin from "./components/Loggedin";
@@ -15,6 +16,7 @@ import NewUser from "./containers/NewUser";
 import ChangePassword from "./components/ChangePassword";
 import {connect} from "react-redux";
 import * as actions from "./store/actions/auth";
+import { Route, Link } from "react-router-dom";
 
 
 class App extends Component {
@@ -34,10 +36,8 @@ class App extends Component {
                         //Logged in users
                         <div>
                             <Header/>
-                            <ChatList/>
-                            <UserList/>
-                            <Chat/>
-                            <Loggedin/>
+                            <Route exact path="/" component={Home} />
+                            
                         </div>
                     ) : (
                         //Logged in new users, (we want user to enter name)

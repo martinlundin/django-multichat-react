@@ -20,6 +20,7 @@ export const getUsers = (token) => {
 };
 
 export const addUser = user => {
+
     let userid = user.uuid;
     return {
         type: actionTypes.ADD_USER,

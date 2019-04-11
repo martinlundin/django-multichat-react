@@ -16,10 +16,17 @@ class ChatPreview extends React.Component {
     }
 
     getUserNameById(id){
-        return this.props.users.users[id].name
+        if(this.props.users.users[id] != null){
+            return this.props.users.users[id].name
+        }
     }
     getUserImageById(id){
-        return this.props.users.users[id].image
+        console.log(id)
+        console.log(id)
+
+        if(this.props.users.users[id] != null){
+            return this.props.users.users[id].image
+        }
     }
 
     componentDidMount() {
@@ -57,6 +64,7 @@ class ChatPreview extends React.Component {
     }
 
     render() {
+        console.log(this.props)
         return (
             <div id={this.props.chatid} className="chatPreview padding" onClick={()=>this.props.openChat(this.props.chatid)}>
                 <img className={"userImage chatPicture"} src={this.state.chat.image} />

@@ -10,6 +10,7 @@ import authReducer from "./store/reducers/auth";
 import userReducer from "./store/reducers/user";
 import chatReducer from "./store/reducers/chat";
 import usersReducer from "./store/reducers/users";
+import {BrowserRouter} from "react-router-dom";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -32,11 +33,12 @@ const store = configureStore();
 
 const app = (
     <Provider store={store}>
-        <App/>
+        <BrowserRouter>
+            <App/>
+        </BrowserRouter>
     </Provider>
 );
 ReactDOM.render(app, document.getElementById('root'));
-
 
 
 // If you want your app to work offline and load faster, you can change
