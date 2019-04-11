@@ -8,6 +8,7 @@ import Chat from "./containers/Chat";
 import ChatList from "./containers/ChatList";
 import UserList from "./containers/UserList";
 import Loggedin from "./components/Loggedin";
+import Header from "./components/Header";
 import EditUser from "./components/EditUser";
 import IntroView from "./containers/IntroView";
 import NewUser from "./containers/NewUser";
@@ -33,6 +34,7 @@ class App extends Component {
                     this.props.hasName ? (
                         //Logged in users
                         <div>
+                            <Header/>
                             <ChatList/>
                             <UserList/>
                             <Chat/>
