@@ -37,7 +37,7 @@ class UserPreview extends React.Component {
         //Show users that actually have a name
         if(this.props.users.users[this.props.userid].name){
             return (
-                <div id={this.props.userid} className="userPreview" onClick={()=>this.openOrCreateChat([this.props.userid, this.props.currentUserid])}>
+                <div id={this.props.userid} className="userPreview padding" onClick={()=>this.openOrCreateChat([this.props.userid, this.props.currentUserid])}>
                     <img src={this.props.users.users[this.props.userid].image} className={"userImage"} />
                     <span className={"profileName"}>{this.props.users.users[this.props.userid].name}</span>
                 </div>

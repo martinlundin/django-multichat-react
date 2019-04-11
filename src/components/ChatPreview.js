@@ -38,7 +38,6 @@ class ChatPreview extends React.Component {
 
         //Set chat image if not set
         if(this.state.chat.image === null){
-            console.log("heere");
             let images = [];
             let outsideThis = this;
             this.state.chat.participants.forEach(function(participant, i,){
@@ -58,9 +57,8 @@ class ChatPreview extends React.Component {
     }
 
     render() {
-        console.log(this.state.chat)
         return (
-            <div id={this.props.chatid} className="chatPreview" onClick={()=>this.props.openChat(this.props.chatid)}>
+            <div id={this.props.chatid} className="chatPreview padding" onClick={()=>this.props.openChat(this.props.chatid)}>
                 <img className={"userImage chatPicture"} src={this.state.chat.image} />
                 <div className={"chatInfo"}>
                     <span className={"chatName oneLine"}>{(this.state.chat.name)}</span>
@@ -74,7 +72,6 @@ class ChatPreview extends React.Component {
                         :
                         null
                     )}
-
                 </div>
             </div>
         );

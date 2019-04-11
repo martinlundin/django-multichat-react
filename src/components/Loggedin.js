@@ -5,7 +5,7 @@ import {connect} from "react-redux";
 class Loggedin extends React.Component {
     render() {
         return (
-            <div>
+            <div className={"padding"}>
                 <p>{this.props.name}</p>
                 <button onClick={() => this.props.logout()} className="authBtn">
                     <span>Logout</span>

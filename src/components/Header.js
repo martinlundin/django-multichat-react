@@ -31,7 +31,7 @@ class Header extends React.Component {
 
     render() {
         return (
-            <header className={`${this.state.headerClass}`}>
+            <header className={`padding ${this.state.headerClass}`}>
                 <span className={"headerNavigation"}></span>
                 <span onClick={function () {
                     console.log("Open settings")
