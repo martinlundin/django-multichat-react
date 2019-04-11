@@ -46,6 +46,7 @@ export const addChat = chat => {
 };
 
 
+
 export const openChat = chatid => {
     return {
         type: actionTypes.OPEN_CHAT,
@@ -53,19 +54,7 @@ export const openChat = chatid => {
     };
 };
 
-
-
-
-
-
-
-export const addMessageToChat = (chatid, sender, text, giphy=null, timestamp=new Date().getTime()) => {
-    let message = {
-        sender: sender,
-        text: text,
-        giphy: giphy,
-        timestamp: timestamp
-    };
+export const addNewMessageToChat = (chatid, message) => {
     return {
         type: actionTypes.ADD_MESSAGE_TO_CHAT,
         id: chatid,

@@ -46,21 +46,9 @@ class WebSocketService {
         if (Object.keys(this.callbacks).length === 0) {
             return;
         }
-        if (command === "return_messages") {
-            console.log('todo add messages to chat')
-            //this.callbacks[command](parsedData.messages);
-        }
         if (command === "send_message") {
-            this.callbacks[command](parsedData.message);
+            this.callbacks[command](parsedData);
         }
-    }
-
-    getMessages(fromMessage, toMessage) {
-        this.sendToServer({
-            command: "get_messages",
-            fromMessage: fromMessage,
-            toMessage: toMessage,
-        });
     }
 
     sendMessage(message) {
@@ -74,9 +62,6 @@ class WebSocketService {
         })
     }
 
-    onReturnMessages(onReturnMessagesFunction){
-    this.callbacks["return_messages"] = onReturnMessagesFunction;
-    }
     onSendMessage(onSendMessageFunction){
         this.callbacks["send_message"] = onSendMessageFunction;
     }
