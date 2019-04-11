@@ -50,33 +50,8 @@ class Chat extends React.Component {
                 <div>
                     <div className="chatMessagesWrap">
                         <ul className="chatMessages">
-                            {this.props.chat.messages.slice(0).reverse().map((message, i, arr) => {
-                                let isFollowUp = false;
-                                //Is less than 15 minutes from last message and sender is the same
-                                if(this.props.hasOwnProperty("lastMessage") && this.props.lastMessage != null && this.props.message.timestamp < this.props.lastMessage.timestamp + 900 && this.props.message.message_sender === this.props.lastMessage.message_sender){
-                                    isFollowUp = true;
-                                }else{
-                                    isFollowUp = false;
-                                }
-
-                                return (
-                                    <li key={i}
-                                     className={
-                                         "chatMessage " +
-                                         (message.message_sender === this.props.userid ? "sent " : "reply ") +
-                                         (isFollowUp ? "followUp " : "")
-                                     }
-                                >
-                                    <span className={"chatMessageTimestamp"}>{message.timestamp}</span>
-                                    <img className={"profilePicture chatProfilePicture"}
-                                         src="http://emilcarlsson.se/assets/mikeross.png"/>
-                                    <span className={"chatMessageText"}>{message.text}</span>
-                                </li>
-                                )
-
-                            })}
                             {this.props.chat.messages.slice(0).reverse().map((message, i, arr) =>
-                                <ChatMessage key={message.id} message={message} lastMessage={arr[i-1]}/>
+                                <ChatMessage key={i + message.timestamp + message.message_sender + message.text} message={message} lastMessage={arr[i-1]}/>
                             )}
 
                             <div style={{float: "left", clear: "both"}} ref={el => {

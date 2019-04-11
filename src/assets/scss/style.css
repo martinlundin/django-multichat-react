@@ -860,10 +860,18 @@ input.underlineInput {
 label {
   cursor: pointer; }
 
-.profilePicture {
-  max-width: 120px;
+.userImage[src] {
+  width: 60px;
+  height: 60px;
   border-radius: 999px;
-  display: inline-block; }
+  display: inline-block;
+  object-fit: cover; }
+
+.oneLine {
+  display: block;
+  height: 1.1em;
+  line-height: 1em;
+  overflow: hidden; }
 
 .Toastify__close-button {
   width: auto; }
@@ -946,6 +954,18 @@ label {
     display: inline-block;
     padding: 5px; }
 
+.chatList .chatPreview {
+  display: flex;
+  padding: 10px; }
+  .chatList .chatPreview .chatInfo {
+    display: block;
+    padding: 13px; }
+    .chatList .chatPreview .chatInfo .chatName {
+      vertical-align: top; }
+    .chatList .chatPreview .chatInfo .chatLastMessage {
+      margin-top: 3px;
+      font-size: 13px; }
+
 .chatMessagesWrap .chatMessages {
   margin: 0;
   padding: 0;
@@ -957,8 +977,9 @@ label {
     .chatMessagesWrap .chatMessages .chatMessage .chatMessageTimestamp {
       display: block;
       text-align: center; }
-    .chatMessagesWrap .chatMessages .chatMessage .chatProfilePicture {
+    .chatMessagesWrap .chatMessages .chatMessage .chatuserImage {
       width: 25px;
+      height: 25px;
       vertical-align: bottom;
       transition: 0.3s all; }
     .chatMessagesWrap .chatMessages .chatMessage .chatMessageText {
@@ -970,7 +991,7 @@ label {
       background: grey; }
     .chatMessagesWrap .chatMessages .chatMessage.sent {
       text-align: right; }
-      .chatMessagesWrap .chatMessages .chatMessage.sent .chatProfilePicture {
+      .chatMessagesWrap .chatMessages .chatMessage.sent .chatuserImage {
         display: none; }
       .chatMessagesWrap .chatMessages .chatMessage.sent .chatMessageText {
         text-align: left;
@@ -980,7 +1001,7 @@ label {
     .chatMessagesWrap .chatMessages .chatMessage.reply .chatMessageText {
       background: #e0e0e1;
       border-radius: 15px 15px 15px 0; }
-    .chatMessagesWrap .chatMessages .chatMessage.reply .chatProfilePicture {
+    .chatMessagesWrap .chatMessages .chatMessage.reply .chatuserImage {
       transform: translateX(-100px); }
     .chatMessagesWrap .chatMessages .chatMessage.followUp {
       margin-top: -5px; }
@@ -990,7 +1011,7 @@ label {
         border-radius: 15px 0 0 15px; }
       .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatMessageText {
         border-radius: 0 15px 15px 0; }
-      .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatProfilePicture {
+      .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatuserImage {
         transform: translateX(0); }
 
 /*# sourceMappingURL=style.css.map */

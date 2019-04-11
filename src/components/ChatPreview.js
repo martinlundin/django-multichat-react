@@ -35,6 +35,18 @@ class ChatPreview extends React.Component {
             });
             this.state.chat.name =  names.join(", ");
         }
+
+        //Set chat image if not set
+        if(this.state.chat.image === null){
+            console.log("heere");
+            let images = [];
+            let outsideThis = this;
+            this.state.chat.participants.forEach(function(participant, i,){
+                images.push(outsideThis.getUserImageById(participant));
+            });
+            //Todo somehow add multiple images together, now first participant is shown
+            this.state.chat.image = images[0];
+        }
     }
 
     componentDidUpdate() {
@@ -46,9 +58,24 @@ class ChatPreview extends React.Component {
     }
 
     render() {
+        console.log(this.state.chat)
         return (
             <div id={this.props.chatid} className="chatPreview" onClick={()=>this.props.openChat(this.props.chatid)}>
-                <span className={"chatName"}>{(this.state.chat.name)}</span>
+                <img className={"userImage chatPicture"} src={this.state.chat.image} />
+                <div className={"chatInfo"}>
+                    <span className={"chatName oneLine"}>{(this.state.chat.name)}</span>
+                    {(this.state.chat.hasOwnProperty("messages") && this.state.chat.messages[0] != null ?
+                        <span className={"chatLastMessage oneLine"}>
+                            {(this.state.chat.messages[0].message_sender === this.props.userid ?
+                                "You: "
+                                :
+                                "")}
+                            {(this.state.chat.messages[0].text)}</span>
+                        :
+                        null
+                    )}
+
+                </div>
             </div>
         );
     }

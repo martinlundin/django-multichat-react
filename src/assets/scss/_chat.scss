@@ -2,6 +2,26 @@ $radius: 15px;
 $padding: 8px;
 $blue: #185292;
 $gray: rgb(224, 224, 225);
+
+.chatList{
+  .chatPreview{
+    display:flex;
+    padding:10px;
+    .chatInfo{
+      display:block;
+      padding:13px;
+      .chatName{
+        vertical-align: top;
+      }
+      .chatLastMessage{
+        margin-top:3px;
+        font-size:13px;
+      }
+    }
+  }
+}
+
+
 .chatMessagesWrap{
 
   .chatMessages{
@@ -17,8 +37,9 @@ $gray: rgb(224, 224, 225);
         display:block;
         text-align:center;
       }
-      .chatProfilePicture{
+      .chatuserImage{
         width:25px;
+        height:25px;
         vertical-align: bottom;
         transition:0.3s all;
       }
@@ -32,7 +53,7 @@ $gray: rgb(224, 224, 225);
       }
       &.sent{
         text-align: right;
-        .chatProfilePicture{
+        .chatuserImage{
           display:none;
         }
         .chatMessageText {
@@ -49,7 +70,7 @@ $gray: rgb(224, 224, 225);
           border-radius: $radius $radius $radius 0;
 
         }
-        .chatProfilePicture{
+        .chatuserImage{
           transform:translateX(-100px);
         }
       }
@@ -67,7 +88,7 @@ $gray: rgb(224, 224, 225);
           .chatMessageText {
             border-radius: 0 $radius $radius 0;
           }
-          .chatProfilePicture{
+          .chatuserImage{
             transform:translateX(0);
           }
         }

@@ -27,8 +27,17 @@ input.underlineInput{
 label{
   cursor:pointer;
 }
-.profilePicture{
-  max-width:120px;
+.userImage[src]{
+  width:60px;
+  height:60px;
   border-radius:999px;
   display:inline-block;
+  object-fit: cover;
+}
+
+.oneLine{
+  display:block;
+  height:1.1em;
+  line-height:1em;
+  overflow:hidden;
 }

@@ -24,7 +24,7 @@ class ChatList extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={"chatList"}>
                 {this.props.chatids.map((chatid, i, arr) => (
                     <ChatPreview key={chatid} chatid={chatid} />
                 ))}

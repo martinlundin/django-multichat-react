@@ -40,7 +40,7 @@ class ChatMessage extends React.Component {
                 }
             >
                 <span className={"chatMessageTimestamp"}>{this.props.message.timestamp}</span>
-                <img className={"profilePicture chatProfilePicture"}
+                <img className={"userImage chatuserImage"}
                      src="http://emilcarlsson.se/assets/mikeross.png"/>
                 <span className={"chatMessageText"}>{this.props.message.text}</span>
             </li>

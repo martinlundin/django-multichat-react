@@ -38,7 +38,7 @@ class UserPreview extends React.Component {
         if(this.props.users.users[this.props.userid].name){
             return (
                 <div id={this.props.userid} className="userPreview" onClick={()=>this.openOrCreateChat([this.props.userid, this.props.currentUserid])}>
-                    <img src={this.props.users.users[this.props.userid].image} className={"profilePicture"} />
+                    <img src={this.props.users.users[this.props.userid].image} className={"userImage"} />
                     <span className={"profileName"}>{this.props.users.users[this.props.userid].name}</span>
                 </div>
             );
