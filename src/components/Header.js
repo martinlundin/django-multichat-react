@@ -9,26 +9,35 @@ class Header extends React.Component {
         headerClass: ""
     };
 
-    componentDidMount() {
-        document.querySelector(".App").addEventListener('scroll', (event) => {
-            if (event.target.scrollTop > 5) {
-                this.setState({
-                    headerClass: "shadow"
-                })
-            } else {
-                this.setState({
-                    headerClass: ""
-                })
-            }
+    onScroll = (event) => {
+        if (event.target.scrollTop > 5) {
+            this.setState({
+                headerClass: "shadow"
+            })
+        } else {
+            this.setState({
+                headerClass: ""
+            })
+        }
+    };
 
-        })
+    componentDidMount() {
+        document.querySelector(".App").addEventListener('scroll', this.onScroll)
+    }
+
+    componentWillUnmount() {
+        document.querySelector(".App").removeEventListener('scroll', this.onScroll);
     }
 
     render() {
         return (
             <header className={`${this.state.headerClass}`}>
                 <span className={"headerNavigation"}></span>
-                <img className={"userImage headerUserImage"} src={this.props.image} />
+                <span onClick={function () {
+                    console.log("Open settings")
+                }}>
+                    <img className={"userImage headerUserImage"} src={this.props.image}/>
+                </span>
             </header>
         )
     }
@@ -44,10 +53,7 @@ const mapStateToProps = state => {
     }
 };
 const mapDispatchToProps = dispatch => {
-    return {
-        login: (email, password) =>
-            dispatch(actions.login(email, password))
-    };
+    return {};
 };
 export default connect(
     mapStateToProps,
