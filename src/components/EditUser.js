@@ -14,7 +14,6 @@ class EditUser extends React.Component {
         );
     };
 
-    //Todo create blob value from image url
     onImageSelect = (event) => {
         event.stopPropagation();
         event.preventDefault();
@@ -31,13 +30,11 @@ class EditUser extends React.Component {
 
             <form method="POST" encType="multipart/form-data" onSubmit={this.submitEditUser}>
                 <h3>User</h3>
-                <label htmlFor="nameEditUser">Firstname</label>
+                <label htmlFor="nameEditUser">Firstname or nickname</label>
                 <input name="name" type="text" id="nameEditUser" placeholder="Melvin" defaultValue={this.props.name} required/>
-                <label htmlFor="imageEditUser">Profile picture</label>
-                <label htmlFor="imageSelectEditUser">
-                    <img id="showSelectedImageEditUser" alt="Profile" src={this.props.image}/>
-                </label>
-                <input name="image" type="hidden" id="imageEditUser" defaultValue={this.props.image}/>
+                <div><label htmlFor={"imageSelectEditUser"}><img id="showSelectedImageEditUser" className={"userImage"} alt="Profile" src={this.props.image}/></label></div>
+                <div><label htmlFor={"imageSelectEditUser"}>Add profile picture</label></div>
+                <input name="image" type="hidden" id="imageEditUser"/>
                 <input name="imageSelect" type="file" id="imageSelectEditUser" accept="image/*" onChange={this.onImageSelect}/>
                 <button type="submit">Submit</button>
             </form>

@@ -30,9 +30,8 @@ export const editUserFail = error => {
     if (error.hasNestedProperties("response", "data")) {
         let errorMessages = error.response.data;
         Object.keys(errorMessages).forEach(function (field) {
-            console.log(field)
-            //let msg = (field === "non_field_errors" || field === "detail" ? errorMessages[field] : field + ": " + errorMessages[field]);
-            //toast.error(msg.toString().capitalize());
+            let msg = (field === "non_field_errors" || field === "detail" ? errorMessages[field] : field + ": " + errorMessages[field]);
+            toast.error(msg.toString().capitalize());
         });
     }
     return {
@@ -43,6 +42,7 @@ export const editUserFail = error => {
 
 
 export const editUser = (token, userid, name, image) => {
+    console.log(image)
     return dispatch => {
         axios.defaults.headers = {
             "Content-Type": "application/json",
@@ -55,7 +55,7 @@ export const editUser = (token, userid, name, image) => {
             })
             .then(res => {
                 console.log(res);
-                dispatch(editUserSuccess(name, image));
+                dispatch(editUserSuccess(res.data.name, res.data.image));
             })
             .catch(error => {
                 dispatch(editUserFail(error));

@@ -63,7 +63,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         editUser: (token, userid, name, image) => dispatch(actions.editUser(token, userid, name, image)),
-        handleChange: (name) => dispatch(actions.handleChange(name)),
     };
 };
 

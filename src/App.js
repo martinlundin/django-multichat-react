@@ -17,7 +17,7 @@ import NewUser from "./containers/NewUser";
 import ChangePassword from "./components/ChangePassword";
 import {connect} from "react-redux";
 import * as actions from "./store/actions/auth";
-import { Route, withRouter } from "react-router-dom";
+import {Route, withRouter, Redirect} from "react-router-dom";
 
 
 class App extends Component {
@@ -27,26 +27,26 @@ class App extends Component {
     }
 
     render() {
-
         return (
             <div className="App">
-                <ToastContainer closeButton={false} position={"top-center"} toastClassName={"bbToast"} hideProgressBar={true} pauseOnFocusLoss={false}/>
+                <ToastContainer closeButton={false} position={"top-center"} toastClassName={"bbToast"}
+                                hideProgressBar={true} pauseOnFocusLoss={false}/>
 
                 {this.props.isAuthenticated ? (
                     this.props.hasName ? (
                         //Logged in users
                         <div>
                             <Header/>
-                            <Route exact path="/" component={Home} />
-                            <Route exact path="/profile" component={Profile} />
+                            <Route exact path="/" component={Home}/>
+                            <Route exact path="/profile" component={Profile}/>
                         </div>
                     ) : (
                         //Logged in new users, (we want user to enter name)
-                        <NewUser />
+                        <NewUser/>
                     )
                 ) : (
                     //Not logged in
-                    <IntroView />
+                    <IntroView/>
                 )}
 
             </div>

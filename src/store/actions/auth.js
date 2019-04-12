@@ -47,6 +47,7 @@ export const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("userid");
     localStorage.removeItem("expirationDate");
+    window.history.pushState('', '', '/');
     return {
         type: actionTypes.AUTH_LOGOUT
     };

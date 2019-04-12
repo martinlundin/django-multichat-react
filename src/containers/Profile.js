@@ -20,7 +20,7 @@ class Profile extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={"padding"}>
                 <EditUser/>
                 <Logout/>
             </div>
