@@ -25,9 +25,9 @@ class WebSocketService {
             this.chatSocket.onmessage = e => {
                 this.socketNewMessage(e.data);
             };
-            this.chatSocket.onerror = e => {
-                console.log(e.message);
-                toast.error(e.message)
+            this.chatSocket.onerror = err => {
+                console.log(err.message);
+                toast.error(err.message)
             };
             this.chatSocket.onclose = () => {
                 console.log("WebSocket closed");
@@ -49,7 +49,6 @@ class WebSocketService {
             return;
         }
         if (command === "send_message") {
-            console.log(this.callbacks)
             this.callbacks[command](parsedData);
         }
     }
@@ -73,6 +72,7 @@ class WebSocketService {
             callback()
         } catch (err) {
             console.log(err.message);
+            toast.error(err.message)
         }
     }
 
