@@ -14,6 +14,9 @@ class Chat extends React.Component {
 
     constructor(props) {
         super(props);
+        if (this.props.chatid){
+            this.connectToSocket(this.props.chatid);
+        }
         WebSocketInstance.onSendMessage(this.props.addNewMessageToChat.bind(this));
     }
 
@@ -71,11 +74,13 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = state => {
+console.log(state)
     return {
         token: state.auth.token,
         userid: state.auth.userid,
         chatid: state.chat.active,
         chat: state.chat.chats[state.chat.active],
+        messageCount: state.chat.messageCount
     };
 };
 

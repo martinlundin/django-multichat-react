@@ -4,7 +4,8 @@ import * as actionTypes from "../actions/actionTypes";
 const initialState = {
     chatids: [],
     chats: {},
-    active: null
+    active: null,
+    messageCount: -1,
 };
 
 const reducer = (state = initialState, action) => {
@@ -25,11 +26,15 @@ const reducer = (state = initialState, action) => {
             }
         case actionTypes.ADD_MESSAGE_TO_CHAT:
             state.chats[action.id]['messages'].unshift(action.payload);
+            //Todo add normilizr and use proper data handling, this messageCount is a temporary fix to update DOM on nested changes
+            state.messageCount = state.chats[action.id]['messages'].length;
             return {
                 ...state
             };
         case actionTypes.OPEN_CHAT:
             state.active = action.id;
+            //Todo remove when normilizr is added
+            state.messageCount = -1;
             return {
                 ...state
             };
