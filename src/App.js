@@ -34,7 +34,7 @@ class App extends Component {
                 {this.props.isAuthenticated ? (
                     this.props.hasName ? (
                         //Logged in users
-                        <div className={`AppContent`}>
+                            <div className={`AppContent`}>
                             <Header/>
                             <Route exact path="/" component={Home}/>
                             <Route exact path="/profile" component={Profile}/>

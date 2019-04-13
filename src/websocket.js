@@ -1,3 +1,5 @@
+import {toast} from 'react-toastify';
+
 class WebSocketService {
     static instance = null;
     callbacks = {};
@@ -25,10 +27,10 @@ class WebSocketService {
             };
             this.chatSocket.onerror = e => {
                 console.log(e.message);
+                toast.error(e.message)
             };
             this.chatSocket.onclose = () => {
-                console.log("WebSocket closed let's reopen");
-                this.connect(chatid, token);
+                console.log("WebSocket closed");
             };
         }else{
             console.log('No chatid')
@@ -47,6 +49,7 @@ class WebSocketService {
             return;
         }
         if (command === "send_message") {
+            console.log(this.callbacks)
             this.callbacks[command](parsedData);
         }
     }
@@ -57,8 +60,6 @@ class WebSocketService {
             message: {
                 text: message.text,
             }
-        }, function(){
-            console.log('sent')
         })
     }
 
