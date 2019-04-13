@@ -33,7 +33,7 @@ class Header extends React.Component {
         return (
             <header className={`padding ${this.state.headerClass}`}>
                 <span className={"headerNavigation"}>
-                    <NavLink exact to={"/"}><i className="fas fa-chevron-left"></i></NavLink>
+                    <NavLink exact to={"/"} onClick={()=> {document.querySelector(".App").scrollTop = 0}}><i className="fas fa-chevron-left"></i></NavLink>
                 </span>
                 <Link to={"/profile"}>
                     <img className={"userImage headerUserImage"} src={this.props.image}/>
