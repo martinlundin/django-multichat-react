@@ -13,11 +13,8 @@ class Chat extends React.Component {
     };
 
     constructor(props) {
-        console.log("construct")
-
         super(props);
-        if (this.props.chatid){
-            console.log("constructconnect")
+        if (this.props.chatid) {
             this.connectToSocket(this.props.chatid);
         }
         WebSocketInstance.onSendMessage(this.props.addNewMessageToChat.bind(this));
@@ -30,7 +27,6 @@ class Chat extends React.Component {
     }
 
     componentWillReceiveProps(newProps) {
-        console.log("recievedprops")
         if (this.props.chatid !== newProps.chatid) {
             if (this.props.chatid != null) {
                 WebSocketInstance.disconnect();
@@ -40,21 +36,22 @@ class Chat extends React.Component {
     }
 
     scrollToBottom = () => {
-        //todo Add scroll to bottom
+        if (this.props.chatid && this.messagesEnd) {
+            this.messagesEnd.scrollIntoView({behavior: "smooth"});
+        }
     };
 
     componentDidMount() {
-        console.log("didmount")
         this.scrollToBottom();
     }
 
     componentWillUnmount() {
-        console.log("unmount")
-        WebSocketInstance.disconnect();
+        if (this.props.chatid) {
+            WebSocketInstance.disconnect();
+        }
     }
 
     componentDidUpdate() {
-        console.log("didupdate")
         this.scrollToBottom();
     }
 
@@ -65,7 +62,8 @@ class Chat extends React.Component {
                     <div className="chatMessagesWrap">
                         <ul className="chatMessages">
                             {this.props.chat.messages.slice(0).reverse().map((message, i, arr) =>
-                                <ChatMessage key={i + message.timestamp + message.message_sender + message.text} message={message} lastMessage={arr[i-1]}/>
+                                <ChatMessage key={i + message.timestamp + message.message_sender + message.text}
+                                             message={message} lastMessage={arr[i - 1]}/>
                             )}
 
                             <div style={{float: "left", clear: "both"}} ref={el => {
@@ -85,7 +83,6 @@ class Chat extends React.Component {
 }
 
 const mapStateToProps = state => {
-console.log(state)
     return {
         token: state.auth.token,
         userid: state.auth.userid,
