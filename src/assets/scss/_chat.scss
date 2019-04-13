@@ -1,80 +1,79 @@
 $bubbleRadius: 30px;
 $bubblePadding: 10px;
 
-.chatList{
-  .chatPreview{
-    display:flex;
-    .chatInfo{
-      display:block;
-      padding:13px;
-      .chatName{
+.chatList {
+  .chatPreview {
+    display: flex;
+    .chatInfo {
+      display: block;
+      padding: 13px;
+      .chatName {
         vertical-align: top;
       }
-      .chatLastMessage{
-        margin-top:3px;
-        font-size:13px;
+      .chatLastMessage {
+        margin-top: 3px;
+        font-size: 13px;
       }
     }
   }
 }
 
+.chatMessagesWrap {
 
-.chatMessagesWrap{
+  .chatMessages {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 
-  .chatMessages{
-    margin:0;
-    padding:0;
-    list-style:none;
-
-    .chatMessage{
-      position:relative;
-      margin:5px;
-      transition:0.3s all;
-      .chatMessageTimestamp{
-        display:block;
-        text-align:center;
+    .chatMessage {
+      position: relative;
+      margin: 5px;
+      transition: 0.3s all;
+      .chatMessageTimestamp {
+        display: block;
+        text-align: center;
       }
-      .chatuserImage{
-        width:25px;
-        height:25px;
+      .chatuserImage {
+        width: 25px;
+        height: 25px;
         vertical-align: bottom;
-        transition:0.3s all;
+        transition: 0.3s all;
       }
-      .chatMessageText{
-        display:inline-block;
-        max-width:80%;
-        padding:$bubblePadding;
-        border-radius:$bubbleRadius;
-        margin:0 5px;
-        background:grey;
+      .chatMessageText {
+        display: inline-block;
+        max-width: 80%;
+        padding: $bubblePadding;
+        border-radius: $bubbleRadius;
+        margin: 0 5px;
+        background: grey;
       }
-      &.sent{
+      &.sent {
         text-align: right;
-        .chatuserImage{
-          display:none;
+        .chatuserImage {
+          display: none;
         }
         .chatMessageText {
-          text-align:left;
-          background:$blueShiftLight;
-          color:$white;
-          border-radius:$bubbleRadius $bubbleRadius 0 $bubbleRadius;
+          text-align: left;
+          background: $blueShiftLight;
+          color: $white;
+          border-radius: $bubbleRadius $bubbleRadius 0 $bubbleRadius;
         }
 
       }
-      &.reply{
+      &.reply {
         .chatMessageText {
           background: $gray;
           border-radius: $bubbleRadius $bubbleRadius $bubbleRadius 0;
 
         }
-        .chatuserImage{
-          transform:translateX(-100px);
+        .chatuserImage {
+          transform: translateX(-100px);
         }
       }
-      &.followUp{
-        margin-top:-5px;
+      &.followUp {
+        margin-top: -5px;
         .chatMessageTimestamp {
-          display:none;
+          display: none;
         }
         &.sent {
           .chatMessageText {
@@ -85,8 +84,8 @@ $bubblePadding: 10px;
           .chatMessageText {
             border-radius: 0 $bubbleRadius $bubbleRadius 0;
           }
-          .chatuserImage{
-            transform:translateX(0);
+          .chatuserImage {
+            transform: translateX(0);
           }
         }
 
@@ -94,5 +93,42 @@ $bubblePadding: 10px;
     }
 
   }
+}
 
+.chatMessageInput {
+  position: sticky;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 999;
+  background: $white;
+  padding: 5px 10px;
+  display: flex;
+  input {
+    margin: 0;
+    background: $white;
+    border: 1px solid $gray;
+    border-radius: $bubbleRadius;
+    padding: 5px 10px;
+    color: $black;
+    font-size: 0.8em;
+    &:focus {
+      background: initial;
+    }
+    &::placeholder {
+      color: rgba($black, 0.4);
+    }
+  }
+  button {
+    background: none;
+    color:$blueShiftLight;
+    margin:0;
+    padding:0;
+    width:0;
+    overflow:hidden;
+    &.show{
+      width:25px;
+      padding:5px;
+    }
+  }
 }

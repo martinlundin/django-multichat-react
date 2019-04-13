@@ -5,16 +5,36 @@ import * as messageActions from "../store/actions/chat";
 
 class ChatMessage extends React.Component {
     state = {
+        scrollClass: "",
         text: "",
         giphy: null,
     };
+
     constructor(props) {
         super(props);
 
     }
 
-    componentDidMount() {
+    onScroll = (event) => {
+        let contentHeight = document.querySelector(".AppContent").clientHeight;
 
+        if (event.target.scrollTop + event.target.clientHeight + 5 < contentHeight) {
+            this.setState({
+                scrollClass: "shadow"
+            })
+        } else {
+            this.setState({
+                scrollClass: ""
+            })
+        }
+    };
+
+    componentDidMount() {
+        document.querySelector(".App").addEventListener('scroll', this.onScroll);
+    }
+
+    componentWillUnmount() {
+        document.querySelector(".App").removeEventListener('scroll', this.onScroll);
     }
 
     componentDidUpdate() {
@@ -40,22 +60,20 @@ class ChatMessage extends React.Component {
 
     render() {
         return (
-            <div className="chatMessageInput">
-                <form onSubmit={this.sendMessageHandler}>
-                    <div className="wrap">
-                        <input
-                            onChange={this.messageChangeHandler}
-                            value={this.state.text}
-                            required
-                            id="chat-message-input"
-                            type="text"
-                            placeholder="Write your message..."
-                            autoComplete="off"
-                        />
-                        <button id="chat-message-submit" className="submit"><i className="far fa-paper-plane"></i></button>
-                    </div>
-                </form>
-            </div>
+            <form className={`chatMessageInput ${this.state.scrollClass}`} onSubmit={this.sendMessageHandler}>
+                <input
+                    onChange={this.messageChangeHandler}
+                    value={this.state.text}
+                    required
+                    id="chat-message-input"
+                    type="text"
+                    placeholder="Aa"
+                    autoComplete="off"
+                />
+                <button id="chat-message-submit" className={`submit ${(this.state.text !== "" ? "show" : "")}`}>
+                    <i className="far fa-paper-plane"></i>
+                </button>
+            </form>
         );
     }
 }
