@@ -19,7 +19,7 @@ $bubblePadding: 10px;
 }
 
 .chatMessagesWrap {
-
+  min-height: calc(100vh - 115px);
   .chatMessages {
     margin: 0;
     padding: 0;

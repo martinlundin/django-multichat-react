@@ -54,6 +54,7 @@ class ChatMessage extends React.Component {
         const messageObject = {
             text: this.state.text,
         };
+        console.log(messageObject);
         WebSocketInstance.sendMessage(messageObject);
         this.setState({text: ""});
     };

@@ -1011,53 +1011,55 @@ header {
       margin-top: 3px;
       font-size: 13px; }
 
-.chatMessagesWrap .chatMessages {
-  margin: 0;
-  padding: 0;
-  list-style: none; }
-  .chatMessagesWrap .chatMessages .chatMessage {
-    position: relative;
-    margin: 5px;
-    transition: 0.3s all; }
-    .chatMessagesWrap .chatMessages .chatMessage .chatMessageTimestamp {
-      display: block;
-      text-align: center; }
-    .chatMessagesWrap .chatMessages .chatMessage .chatuserImage {
-      width: 25px;
-      height: 25px;
-      vertical-align: bottom;
+.chatMessagesWrap {
+  min-height: calc(100vh - 115px); }
+  .chatMessagesWrap .chatMessages {
+    margin: 0;
+    padding: 0;
+    list-style: none; }
+    .chatMessagesWrap .chatMessages .chatMessage {
+      position: relative;
+      margin: 5px;
       transition: 0.3s all; }
-    .chatMessagesWrap .chatMessages .chatMessage .chatMessageText {
-      display: inline-block;
-      max-width: 80%;
-      padding: 10px;
-      border-radius: 30px;
-      margin: 0 5px;
-      background: grey; }
-    .chatMessagesWrap .chatMessages .chatMessage.sent {
-      text-align: right; }
-      .chatMessagesWrap .chatMessages .chatMessage.sent .chatuserImage {
-        display: none; }
-      .chatMessagesWrap .chatMessages .chatMessage.sent .chatMessageText {
-        text-align: left;
-        background: #435f7a;
-        color: #ffffff;
-        border-radius: 30px 30px 0 30px; }
-    .chatMessagesWrap .chatMessages .chatMessage.reply .chatMessageText {
-      background: #E0E0E1;
-      border-radius: 30px 30px 30px 0; }
-    .chatMessagesWrap .chatMessages .chatMessage.reply .chatuserImage {
-      transform: translateX(-100px); }
-    .chatMessagesWrap .chatMessages .chatMessage.followUp {
-      margin-top: -5px; }
-      .chatMessagesWrap .chatMessages .chatMessage.followUp .chatMessageTimestamp {
-        display: none; }
-      .chatMessagesWrap .chatMessages .chatMessage.followUp.sent .chatMessageText {
-        border-radius: 30px 0 0 30px; }
-      .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatMessageText {
-        border-radius: 0 30px 30px 0; }
-      .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatuserImage {
-        transform: translateX(0); }
+      .chatMessagesWrap .chatMessages .chatMessage .chatMessageTimestamp {
+        display: block;
+        text-align: center; }
+      .chatMessagesWrap .chatMessages .chatMessage .chatuserImage {
+        width: 25px;
+        height: 25px;
+        vertical-align: bottom;
+        transition: 0.3s all; }
+      .chatMessagesWrap .chatMessages .chatMessage .chatMessageText {
+        display: inline-block;
+        max-width: 80%;
+        padding: 10px;
+        border-radius: 30px;
+        margin: 0 5px;
+        background: grey; }
+      .chatMessagesWrap .chatMessages .chatMessage.sent {
+        text-align: right; }
+        .chatMessagesWrap .chatMessages .chatMessage.sent .chatuserImage {
+          display: none; }
+        .chatMessagesWrap .chatMessages .chatMessage.sent .chatMessageText {
+          text-align: left;
+          background: #435f7a;
+          color: #ffffff;
+          border-radius: 30px 30px 0 30px; }
+      .chatMessagesWrap .chatMessages .chatMessage.reply .chatMessageText {
+        background: #E0E0E1;
+        border-radius: 30px 30px 30px 0; }
+      .chatMessagesWrap .chatMessages .chatMessage.reply .chatuserImage {
+        transform: translateX(-100px); }
+      .chatMessagesWrap .chatMessages .chatMessage.followUp {
+        margin-top: -5px; }
+        .chatMessagesWrap .chatMessages .chatMessage.followUp .chatMessageTimestamp {
+          display: none; }
+        .chatMessagesWrap .chatMessages .chatMessage.followUp.sent .chatMessageText {
+          border-radius: 30px 0 0 30px; }
+        .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatMessageText {
+          border-radius: 0 30px 30px 0; }
+        .chatMessagesWrap .chatMessages .chatMessage.followUp.reply .chatuserImage {
+          transform: translateX(0); }
 
 .chatMessageInput {
   position: sticky;
