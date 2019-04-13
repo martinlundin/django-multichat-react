@@ -1,3 +1,11 @@
+.App[data-pathname="/"]{
+  .headerNavigation {
+    a{
+      transform:translateX(-100px);
+    }
+  }
+
+}
 header{
   position: sticky;
   top: 0;
@@ -16,6 +24,13 @@ header{
   .headerNavigation{
     display:flex;
     align-items: center;
+    a{
+      display:block;
+      padding:5px;
+      color:$black;
+      user-select: none;
+    }
+
   }
   .headerUserImage[src]{
     width:40px;

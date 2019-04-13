@@ -794,7 +794,8 @@ small {
   font-size: 60% !important; }
 
 body * {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  transition: 0.3s all; }
 body input {
   display: block;
   width: 100%;
@@ -833,6 +834,13 @@ body button {
   font-family: "proxima-nova", "Source Sans Pro", sans-serif; }
   body button:focus {
     outline: none; }
+body a {
+  text-decoration: none;
+  color: #000000; }
+  body a:focus {
+    outline: none; }
+  body a:visited {
+    color: initial; }
 
 html, body {
   overflow-x: hidden;
@@ -894,6 +902,9 @@ label {
   left: 50%;
   transform: translate(-50%); }
 
+.App[data-pathname="/"] .headerNavigation a {
+  transform: translateX(-100px); }
+
 header {
   position: sticky;
   top: 0;
@@ -910,6 +921,11 @@ header {
   header .headerNavigation {
     display: flex;
     align-items: center; }
+    header .headerNavigation a {
+      display: block;
+      padding: 5px;
+      color: #000000;
+      user-select: none; }
   header .headerUserImage[src] {
     width: 40px;
     height: 40px; }
@@ -1023,11 +1039,11 @@ header {
         display: none; }
       .chatMessagesWrap .chatMessages .chatMessage.sent .chatMessageText {
         text-align: left;
-        background: #185292;
-        color: white;
+        background: #435f7a;
+        color: #f5f5f5;
         border-radius: 30px 30px 0 30px; }
     .chatMessagesWrap .chatMessages .chatMessage.reply .chatMessageText {
-      background: #e0e0e1;
+      background: #E0E0E1;
       border-radius: 30px 30px 30px 0; }
     .chatMessagesWrap .chatMessages .chatMessage.reply .chatuserImage {
       transform: translateX(-100px); }

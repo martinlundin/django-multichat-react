@@ -4,6 +4,7 @@ import WebSocketInstance from "../websocket";
 import * as messageActions from "../store/actions/chat";
 import ChatMessage from "../components/ChatMessage"
 import ChatMessageInput from "../components/ChatMessageInput"
+import {Redirect} from "react-router-dom";
 
 class Chat extends React.Component {
     state = {
@@ -62,7 +63,9 @@ class Chat extends React.Component {
                 </div>
             );
         } else {
-            return null
+            return (
+                <Redirect to={"/"}/>
+            )
         }
     }
 }

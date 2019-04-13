@@ -1,7 +1,5 @@
-$radius: 30px;
-$padding: 10px;
-$blue: #185292;
-$gray: rgb(224, 224, 225);
+$bubbleRadius: 30px;
+$bubblePadding: 10px;
 
 .chatList{
   .chatPreview{
@@ -45,8 +43,8 @@ $gray: rgb(224, 224, 225);
       .chatMessageText{
         display:inline-block;
         max-width:80%;
-        padding:$padding;
-        border-radius:$radius;
+        padding:$bubblePadding;
+        border-radius:$bubbleRadius;
         margin:0 5px;
         background:grey;
       }
@@ -57,16 +55,16 @@ $gray: rgb(224, 224, 225);
         }
         .chatMessageText {
           text-align:left;
-          background:$blue;
-          color:white;
-          border-radius:$radius $radius 0 $radius;
+          background:$blueShiftLight;
+          color:$white;
+          border-radius:$bubbleRadius $bubbleRadius 0 $bubbleRadius;
         }
 
       }
       &.reply{
         .chatMessageText {
           background: $gray;
-          border-radius: $radius $radius $radius 0;
+          border-radius: $bubbleRadius $bubbleRadius $bubbleRadius 0;
 
         }
         .chatuserImage{
@@ -80,12 +78,12 @@ $gray: rgb(224, 224, 225);
         }
         &.sent {
           .chatMessageText {
-            border-radius: $radius 0 0 $radius;
+            border-radius: $bubbleRadius 0 0 $bubbleRadius;
           }
         }
         &.reply {
           .chatMessageText {
-            border-radius: 0 $radius $radius 0;
+            border-radius: 0 $bubbleRadius $bubbleRadius 0;
           }
           .chatuserImage{
             transform:translateX(0);

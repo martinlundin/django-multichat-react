@@ -28,10 +28,9 @@ class App extends Component {
 
     render() {
         return (
-            <div className="App">
+            <div className={`App`} data-pathname={`${this.props.location.pathname}`}>
                 <ToastContainer closeButton={false} position={"top-center"} toastClassName={"bbToast"}
                                 hideProgressBar={true} pauseOnFocusLoss={false}/>
-
                 {this.props.isAuthenticated ? (
                     this.props.hasName ? (
                         //Logged in users
@@ -39,6 +38,7 @@ class App extends Component {
                             <Header/>
                             <Route exact path="/" component={Home}/>
                             <Route exact path="/profile" component={Profile}/>
+                            <Route exact path="/chat" component={Chat}/>
                         </div>
                     ) : (
                         //Logged in new users, (we want user to enter name)

@@ -2,6 +2,7 @@ import React from "react";
 import {connect} from "react-redux";
 import WebSocketInstance from "../websocket";
 import * as messageActions from "../store/actions/chat";
+import {Link} from "react-router-dom";
 
 class ChatPreview extends React.Component {
     state = {
@@ -12,7 +13,6 @@ class ChatPreview extends React.Component {
     constructor(props) {
         super(props);
         this.state.chat = this.props.chats[this.props.chatid];
-
     }
 
     getUserNameById(id){
@@ -21,9 +21,6 @@ class ChatPreview extends React.Component {
         }
     }
     getUserImageById(id){
-        console.log(id)
-        console.log(id)
-
         if(this.props.users.users[id] != null){
             return this.props.users.users[id].image
         }
@@ -64,9 +61,8 @@ class ChatPreview extends React.Component {
     }
 
     render() {
-        console.log(this.props)
         return (
-            <div id={this.props.chatid} className="chatPreview padding" onClick={()=>this.props.openChat(this.props.chatid)}>
+            <Link to="/chat" id={this.props.chatid} className="chatPreview padding" onClick={()=>this.props.openChat(this.props.chatid)}>
                 <img className={"userImage chatPicture"} src={this.state.chat.image} />
                 <div className={"chatInfo"}>
                     <span className={"chatName oneLine"}>{(this.state.chat.name)}</span>
@@ -81,7 +77,7 @@ class ChatPreview extends React.Component {
                         null
                     )}
                 </div>
-            </div>
+            </Link>
         );
     }
 }

@@ -1,6 +1,7 @@
 body {
   *{
     box-sizing:border-box;
+    transition:0.3s all;
   }
   input {
     display: block;
@@ -47,5 +48,16 @@ body {
     &:focus{
       outline:none;
     }
+  }
+  a{
+    text-decoration: none;
+    color:$black;
+    &:focus{
+      outline:none;
+    }
+    &:visited{
+      color:initial;
+    }
+
   }
 }

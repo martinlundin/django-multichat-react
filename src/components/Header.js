@@ -1,8 +1,7 @@
 import React from "react";
 import * as actions from "../store/actions/auth";
 import {connect} from "react-redux";
-import { Link } from "react-router-dom";
-
+import { Link, NavLink} from "react-router-dom";
 
 class Header extends React.Component {
 
@@ -31,10 +30,11 @@ class Header extends React.Component {
     }
 
     render() {
-
         return (
             <header className={`padding ${this.state.headerClass}`}>
-                <span className={"headerNavigation"}></span>
+                <span className={"headerNavigation"}>
+                    <NavLink exact to={"/"}><i className="fas fa-chevron-left"></i></NavLink>
+                </span>
                 <Link to={"/profile"}>
                     <img className={"userImage headerUserImage"} src={this.props.image}/>
                 </Link>
@@ -50,6 +50,7 @@ const mapStateToProps = state => {
         name: state.user.name,
         image: state.user.image,
         users: state.users,
+        pathname: window.location.pathname,
     }
 };
 const mapDispatchToProps = dispatch => {
