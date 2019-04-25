@@ -11,6 +11,7 @@ import userReducer from "./store/reducers/user";
 import chatReducer from "./store/reducers/chat";
 import usersReducer from "./store/reducers/users";
 import {BrowserRouter} from "react-router-dom";
+import { initializeFirebase } from './pushNotifications';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -39,9 +40,9 @@ const app = (
     </Provider>
 );
 ReactDOM.render(app, document.getElementById('root'));
-
+initializeFirebase();
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+//serviceWorker.register();

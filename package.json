@@ -10,6 +10,7 @@
   "dependencies": {
     "antd": "^3.16.2",
     "axios": "^0.18.0",
+    "firebase": "^5.10.0",
     "react": "^16.8.6",
     "react-bootstrap": "^1.0.0-beta.6",
     "react-card-flip": "^0.4.0",
