@@ -66,3 +66,14 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+### Run localhost development with https
+NOTE this instruction is only for mac. To use service worker functions we need to load the site on https.
+- Go to ``PROJECT_ROOT``, in open ``.env``. Add ``HTTPS=true PORT=3000``. Now the HTTPS mode will be activated.
+- Run ``npm start`` 
+- Now go to ``PROJECT_ROOT/node_modules/webpack-dev-server/ssl/``. Here a new file is created ``server.pem``
+- Doubleclick the ``server.pem``. This will load it into "Keychain Access"
+- Open "Keychain Access", go to `Certificates`.
+- Doubleclick ``localhost``
+- Go under "Trust", on "When using this certificate" choose `Always Trust`.
+- Restart Chrome. Tip, use: ``chrome://restart``
