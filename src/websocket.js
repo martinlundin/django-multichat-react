@@ -12,24 +12,24 @@ class WebSocketService {
     }
 
     constructor() {
-        this.chatSocket = null;
+        this.chatSocket = [];
     }
 
     connect(chatid, token) {
         if(chatid){
             const path = `ws://localhost:8000/chat/${chatid}/`;
-            this.chatSocket = new WebSocket(path, token);
-            this.chatSocket.onopen = () => {
+            this.chatSocket[chatid] = new WebSocket(path, token);
+            this.chatSocket[chatid].onopen = () => {
                 console.log("WebSocket open");
             };
-            this.chatSocket.onmessage = e => {
+            this.chatSocket[chatid].onmessage = e => {
                 this.socketNewMessage(e.data);
             };
-            this.chatSocket.onerror = err => {
+            this.chatSocket[chatid].onerror = err => {
                 console.log(err.message);
                 toast.error(err.message)
             };
-            this.chatSocket.onclose = () => {
+            this.chatSocket[chatid].onclose = () => {
                 console.log("WebSocket closed");
             };
         }else{
@@ -53,8 +53,9 @@ class WebSocketService {
         }
     }
 
-    sendMessage(message) {
+    sendMessage(chatid, message) {
         this.sendToServer({
+            chatid: chatid,
             command: "send_message",
             message: {
                 text: message.text,
@@ -67,9 +68,9 @@ class WebSocketService {
     }
 
     sendToServer(data, callback) {
+        let chatid = data.chatid;
         try {
-            this.chatSocket.send(JSON.stringify({...data}));
-            callback()
+            this.chatSocket[chatid].send(JSON.stringify({...data}));
         } catch (err) {
             console.log(err.message);
             toast.error(err.message)

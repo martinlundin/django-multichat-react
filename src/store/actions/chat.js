@@ -12,7 +12,8 @@ export const getChats = (token) => {
             .then(res => {
                 res.data.forEach(function(chat){
                     dispatch(addChat(chat));
-                })
+                });
+                return res.data;
             });
     };
 };

@@ -14,25 +14,13 @@ class Chat extends React.Component {
 
     constructor(props) {
         super(props);
-        if (this.props.chatid) {
-            this.connectToSocket(this.props.chatid);
-        }
-        WebSocketInstance.onSendMessage(this.props.addNewMessageToChat.bind(this));
+
     }
 
-    connectToSocket(chatid) {
-        if (chatid != null) {
-            WebSocketInstance.connect(chatid, this.props.token);
-        }
-    }
+
 
     componentWillReceiveProps(newProps) {
-        if (this.props.chatid !== newProps.chatid) {
-            if (this.props.chatid != null) {
-                WebSocketInstance.disconnect();
-            }
-            this.connectToSocket(newProps.chatid);
-        }
+
     }
 
     scrollToBottom = () => {
@@ -42,13 +30,12 @@ class Chat extends React.Component {
     };
 
     componentDidMount() {
+
         this.scrollToBottom();
     }
 
     componentWillUnmount() {
-        if (this.props.chatid) {
-            WebSocketInstance.disconnect();
-        }
+
     }
 
     componentDidUpdate() {
@@ -94,9 +81,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
-        addNewMessageToChat: (data) => {
-            dispatch(messageActions.addNewMessageToChat(data.chatid, data.message));
-        }
+
     };
 };
 
