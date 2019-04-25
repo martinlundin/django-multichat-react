@@ -957,7 +957,7 @@ header {
     width: 100%; }
   .videoOverlay .react-card-flip {
     width: 100%; }
-  .videoOverlay a {
+  .videoOverlay a, .videoOverlay a:visited {
     color: #ffffff;
     display: block;
     text-align: center;
