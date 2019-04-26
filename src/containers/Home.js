@@ -20,22 +20,18 @@ class Home extends React.Component {
 
     render() {
         return (
-            (this.props.chatids != null ?
-                    //There are chats, show chat list
-                    <ChatList/>
-                    :
-                    //There are no chats, show users
-                    <UserList/>
-            )
+            <div>
+                <ChatList/>
+                <h4 className={`text-center`}>Other users</h4>
+                <UserList/>
+            </div>
         );
     }
 }
 
 const mapStateToProps = state => {
     return {
-        userid: state.auth.userid,
-        users: state.users,
-        chatids: state.chat.chatids
+
     };
 };
 
